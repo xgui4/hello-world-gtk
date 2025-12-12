@@ -12,8 +12,10 @@ void activate (GtkApplication *app, gpointer user_data)
   GtkWidget *window;
   GtkWidget *button;
 
+  char * app_window_name = app_name; 
+
   window = gtk_application_window_new (app);
-  gtk_window_set_title (GTK_WINDOW (window), app_name);
+  gtk_window_set_title (GTK_WINDOW (window), app_window_name);
   gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
 
   button = gtk_button_new_with_label ("Hello World From GTK!");
