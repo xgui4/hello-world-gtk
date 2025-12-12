@@ -1,6 +1,6 @@
 # Define variables
 CC = gcc
-SRC = hello-world-gtk.c
+SRC = main.c
 
 # Define the build directory and the final target path
 BUILD_DIR = bin
