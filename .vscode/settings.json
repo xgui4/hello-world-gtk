@@ -1,0 +1,11 @@
+{
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/xgui4/develop/interface/bin",
+            "binaryPath": "/home/xgui4/develop/interface/bin/hello-world-gtk-app",
+            "binaryArgs": []
+        }
+    ]
+}

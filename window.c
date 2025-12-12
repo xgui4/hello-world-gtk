@@ -11,6 +11,7 @@ void activate (GtkApplication *app, gpointer user_data)
 {
   GtkWidget *window;
   GtkWidget *button;
+  GtkWidget *image; 
 
   char * app_window_name = app_name; 
 
@@ -18,11 +19,15 @@ void activate (GtkApplication *app, gpointer user_data)
   gtk_window_set_title (GTK_WINDOW (window), app_window_name);
   gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
 
-  button = gtk_button_new_with_label ("Hello World From GTK!");
+  button = gtk_button_new_with_label("Hello World From GTK!");
+  image = gtk_image_new_from_file("assets/image.jpg");
   gtk_widget_set_halign(button, GTK_ALIGN_CENTER);
   gtk_widget_set_valign(button, GTK_ALIGN_CENTER);
+  gtk_widget_set_halign(image, GTK_ALIGN_CENTER);
+  gtk_widget_set_valign(image, GTK_ALIGN_START);
   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), NULL);
-  gtk_window_set_child (GTK_WINDOW (window), button);
+  gtk_window_set_child(GTK_WINDOW(window), button);
+  gtk_window_set_child(GTK_WINDOW(window), image); 
 
   gtk_window_present (GTK_WINDOW (window));
-}
+} 

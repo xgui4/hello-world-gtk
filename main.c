@@ -5,19 +5,7 @@
 int main (int argc, char **argv)
 {
 
-  g_print("Starting the ");
-
-  g_print(app_name); 
-
-  g_print(" App ");
-
-  g_print(version); 
-
-  g_print(" by ");
-
-  g_print(app_author);
-
-  g_print("\n");
+  g_print("Starting the  %s App Version %s by %s\n", app_name, version, app_author);
 
   GtkApplication *app;
   int status;

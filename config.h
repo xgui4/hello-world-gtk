@@ -2,7 +2,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-extern const  char * version; 
+extern const char * version; 
 
 extern const char * app_name; 
 
