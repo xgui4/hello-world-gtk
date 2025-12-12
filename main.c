@@ -1,8 +1,24 @@
 #include <gtk/gtk.h>
 #include "window.c"
+#include "config.h"
 
 int main (int argc, char **argv)
 {
+
+  g_print("Starting the ");
+
+  g_print(app_name); 
+
+  g_print(" App ");
+
+  g_print(version); 
+
+  g_print(" by ");
+
+  g_print(app_author);
+
+  g_print("\n");
+
   GtkApplication *app;
   int status;
 
