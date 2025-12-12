@@ -1,3 +1,0 @@
-gcc $(pkg-config --cflags gtk4) -o bin hello-world-gtk.c $(pkg-config --libs gtk4)
-
-./bin
