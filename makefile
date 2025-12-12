@@ -1,10 +1,11 @@
 # Define variables
 CC = gcc
-SRC = main.c
+# Add config.c to the source file list
+SRC = main.c config.c
 
 # Define the build directory and the final target path
 BUILD_DIR = bin
-TARGET = $(BUILD_DIR)/hello-world-gtk-app # Name the executable something descriptive
+TARGET = $(BUILD_DIR)/hello-world-gtk-app
 
 # Define GTK flags using shell expansion
 GTK_CFLAGS := $(shell pkg-config --cflags gtk4)
@@ -14,12 +15,12 @@ GTK_LIBS := $(shell pkg-config --libs gtk4)
 all: $(TARGET)
 
 # Rule to build the target executable
-# The | $(BUILD_DIR) makes the directory an "order-only" prerequisite
+# Change $< (which means "first prerequisite") to $^ (which means "all prerequisites")
+# $^ will expand to main.c config.c
 $(TARGET): $(SRC) | $(BUILD_DIR)
-	$(CC) $(GTK_CFLAGS) -o $@ $< $(GTK_LIBS)
+	$(CC) $(GTK_CFLAGS) -o $@ $^ $(GTK_LIBS)
 
 # Rule to create the build directory
-# The -p flag prevents errors if the directory already exists
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 

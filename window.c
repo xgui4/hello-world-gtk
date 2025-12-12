@@ -1,17 +1,21 @@
 #include <gtk/gtk.h>
+#include "config.h"
+#include "window.h"
 
-static void print_hello (GtkWidget *widget, gpointer   data)
+void print_hello (GtkWidget *widget, gpointer   data)
 {
   g_print ("Hello World From GTK!\n");
 }
 
-static void activate (GtkApplication *app, gpointer user_data)
+void activate (GtkApplication *app, gpointer user_data)
 {
   GtkWidget *window;
   GtkWidget *button;
 
+  char * app_window_name = app_name; 
+
   window = gtk_application_window_new (app);
-  gtk_window_set_title (GTK_WINDOW (window), "Hello");
+  gtk_window_set_title (GTK_WINDOW (window), app_window_name);
   gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
 
   button = gtk_button_new_with_label ("Hello World From GTK!");
