@@ -27,7 +27,6 @@ run: $(TARGET)
 	./$(TARGET)
 
 build:
-	$(TARGET): $(SRC) | $(BUILD_DIR)
 	$(CC) $(GTK_CFLAGS) -o $@ $^ $(GTK_LIBS)
 
 # Target to clean up generated files and the directory
