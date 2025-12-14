@@ -29,7 +29,7 @@ static void activate(GtkApplication *app, gpointer user_data)
     GtkWidget *logo_image;
     GtkWidget *checkbox1; 
     GtkWidget *go_to_github_button;
-    // GtkWidget *text_field; 
+    GtkWidget *text_field; 
 
     window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), app_name);
@@ -63,10 +63,10 @@ static void activate(GtkApplication *app, gpointer user_data)
 
     g_signal_connect(checkbox1, "toggled", G_CALLBACK(send_notification), NULL);
 
-    // text_field = gtk_text_new();
+    text_field = gtk_entry_new();
 
     gtk_box_append(GTK_BOX(vbox), logo_image);
-    // gtk_box_append(GTK_BOX(vbox), text_field);
+    gtk_box_append(GTK_BOX(vbox), text_field);
     gtk_box_append(GTK_BOX(vbox), hello_world_button);
     gtk_box_append(GTK_BOX(vbox), checkbox1); 
     gtk_box_append(GTK_BOX(vbox), go_to_github_button); 
