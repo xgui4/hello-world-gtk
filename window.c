@@ -1,33 +1,37 @@
 #include <gtk/gtk.h>
 #include "config.h"
-#include "window.h"
 
-void print_hello(GtkWidget *widget, gpointer   data)
+static void print_hello(GtkWidget *widget, gpointer data)
 {
-  g_print("Hello World From GTK!\n");
+    g_print("Hello World From GTK!\n");
 }
 
-void activate(GtkApplication *app, gpointer user_data)
+static void activate(GtkApplication *app, gpointer user_data)
 {
+    GtkWidget *window;
+    GtkWidget *vbox;
+    GtkWidget *button;
+    GtkWidget *image;
 
-  GtkBox *box;
-  GtkWidget *window;
-  GtkWidget *button;
-  GtkWidget *image; 
+    window = gtk_application_window_new(app);
+    gtk_window_set_title(GTK_WINDOW(window), app_name);
+    gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
 
-  char * app_window_name = app_name; 
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
+    gtk_widget_set_margin_top(vbox, 10);
+    gtk_widget_set_margin_bottom(vbox, 10);
+    gtk_widget_set_margin_start(vbox, 10);
+    gtk_widget_set_margin_end(vbox, 10);
 
-  window = gtk_application_window_new(app);
-  gtk_window_set_title(GTK_WINDOW(window), app_window_name);
-  gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
+    image = gtk_image_new_from_file("assets/image.jpg");
 
-  button = gtk_button_new_with_label("Hello World From GTK!");
-  image = gtk_image_new_from_file("assets/image.jpg");
-  gtk_widget_set_halign(button, GTK_ALIGN_CENTER);
-  gtk_widget_set_valign(button, GTK_ALIGN_CENTER);
-  g_signal_connect(button, "clicked", G_CALLBACK(print_hello), NULL);
-  gtk_window_set_child(GTK_WINDOW(window), button);
-  gtk_window_set_child(GTK_WINDOW(window), image); 
+    button = gtk_button_new_with_label("Hello World From GTK!");
+    gtk_widget_set_halign(button, GTK_ALIGN_CENTER);
+    g_signal_connect(button, "clicked", G_CALLBACK(print_hello), NULL);
 
-  gtk_window_present(GTK_WINDOW(window));
-} 
+    gtk_box_append(GTK_BOX(vbox), image);
+    gtk_box_append(GTK_BOX(vbox), button);
+
+    gtk_window_set_child(GTK_WINDOW(window), vbox);
+    gtk_window_present(GTK_WINDOW(window));
+}
