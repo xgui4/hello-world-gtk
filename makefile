@@ -22,9 +22,6 @@ $(TARGET): $(SRC) | $(BUILD_DIR)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-# Rule to build the program
-build: $(TARGET)
-
 # Target to run the program
 run: $(TARGET)
 	./$(TARGET)
@@ -42,4 +39,4 @@ install:
 	mv $(TARGET) $(PREFIX)
 	@echo "Preparation finished."
 
-.PHONY: all run build clean install
+.PHONY: all run clean install
