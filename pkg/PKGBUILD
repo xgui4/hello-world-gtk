@@ -1,0 +1,26 @@
+pkgname=hello-world-gtk
+pkgver=0.0.0.1
+pkgrel=1
+pkgdesc="My First GTK App"
+arch=('x86_64')
+url="https://github.com/xgui4/hello-world-gtk"
+license=('MIT') 
+depends=(
+    'gtk4'
+    'glib2'
+    'glibc'
+) # List your runtime dependencies
+makedepends=('gcc' 'make' 'pkgconfig' 'autoconf' 'automake') # Build tools
+source=("${pkgname}-${pkgver}.tar.gz::github.com/archive/v${pkgver}.tar.gz")
+sha256sums=('SKIP') # Use 'SKIP' for development or calculate the actual checksum
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  make DESTDIR="${pkgdir}" install
+}

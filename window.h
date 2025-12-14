@@ -1,5 +1,7 @@
 #include <gtk/gtk.h>
 
-void print_hello(GtkWidget *widget, gpointer  data); 
+static void print_hello(GtkWidget *widget, gpointer  data); 
 
-void activate(GtkApplication *app, gpointer user_data);
+static void go_to_github(); 
+
+static void activate(GtkApplication *app, gpointer user_data);
