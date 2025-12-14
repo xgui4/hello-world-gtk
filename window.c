@@ -14,10 +14,10 @@ static void go_to_github(GtkButton *button, gpointer user_data) {
 static void send_notification(GtkCheckButton *checkbox, gpointer user_data) {
     gboolean is_active = gtk_check_button_get_active(checkbox);
     if (is_active) {
-        system("notify-send -a hellow-world-gtk -i assets/image.jpeg Hello-World-GTK \"Notfication Enable!\""); 
+        system("notify-send -a hellow-world-gtk -i assets/image.jpg Hello-World-GTK \"Notfication Enable!\""); 
     }
     else {
-        system("notify-send -a hellow-world-gtk -i assets/image.jpeg Hello-World-GTK \"Notfication Disabled!\""); 
+        system("notify-send -a hellow-world-gtk -i assets/image.jpg Hello-World-GTK \"Notfication Disabled!\""); 
     }
 }
 
