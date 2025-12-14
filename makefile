@@ -26,17 +26,19 @@ $(BUILD_DIR):
 run: $(TARGET)
 	./$(TARGET)
 
+build:
+	$(TARGET): $(SRC) | $(BUILD_DIR)
+	$(CC) $(GTK_CFLAGS) -o $@ $^ $(GTK_LIBS)
+
 # Target to clean up generated files and the directory
 clean:
 	rm -rf $(BUILD_DIR)
 
 # Target to configure the installation
-install:
-	$(TARGET)
+install: build
 	mkdir -p $(INSTALL_DIR)
 	@echo "Preparing $(TARGET_INSTALL) 
-	mkdir -p $(INSTALL_DIR) 
 	mv $(TARGET) $(PREFIX)
 	@echo "Preparation finished."
 
-.PHONY: all run clean install
+.PHONY: all run build clean install
