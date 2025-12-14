@@ -36,6 +36,7 @@ clean:
 # Target to configure the installation
 install:
 	$(TARGET)
+	mkdir -p $(INSTALL_DIR)
 	@echo "Preparing $(TARGET_INSTALL) 
 	mkdir -p $(INSTALL_DIR) 
 	mv $(TARGET) $(PREFIX)
