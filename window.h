@@ -2,7 +2,7 @@
 
 static void print_hello(GtkWidget *widget, gpointer  data); 
 
-static void go_to_github(); 
+static void go_to_github(GtkButton *button, gpointer user_data); 
 
 static void send_notifcation(GtkCheckButton *checkbox, gpointer user_data); 
 

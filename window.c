@@ -7,7 +7,7 @@ static void print_hello(GtkWidget *widget, gpointer data)
     g_print("Hello World From GTK!\n");
 }
 
-static void go_to_github() {
+static void go_to_github(GtkButton *button, gpointer user_data) {
     system("xdg-open https://github.com/xgui4/"); 
 }
 
@@ -70,6 +70,7 @@ static void activate(GtkApplication *app, gpointer user_data)
     gtk_box_append(GTK_BOX(vbox), hello_world_button);
     gtk_box_append(GTK_BOX(vbox), checkbox1); 
     gtk_box_append(GTK_BOX(vbox), go_to_github_button); 
+    gtk_window_present(GTK_WINDOW(window));
 
     gtk_window_set_child(GTK_WINDOW(window), vbox);
 }
