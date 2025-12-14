@@ -9,6 +9,7 @@ depends=(
     'gtk4'
     'glib2'
     'glibc'
+    'xdg-open'
 ) # List your runtime dependencies
 makedepends=('gcc' 'make' 'pkgconfig' 'autoconf' 'automake') # Build tools
 source=("${pkgname}-${pkgver}.tar.gz::github.com/archive/v${pkgver}.tar.gz")
