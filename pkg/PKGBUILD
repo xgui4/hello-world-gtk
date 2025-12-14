@@ -1,5 +1,5 @@
 pkgname=hello-world-gtk
-pkgver=r24.ee9579b
+pkgver=r25.e8c1fbe # This will be updated by the pkgver() function
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')
@@ -10,12 +10,14 @@ depends=(
     'glib2'
     'glibc'
     'xdg-utils'
-) # dependencies
-makedepends=('gcc' 'make' 'pkgconfig' 'autoconf' 'automake' 'git') # Build tools
-source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev')
-sha256sums=('SKIP') # Checksums are skipped for VCS sources as they change constantly
+)
+makedepends=('gcc' 'make' 'pkgconfig' 'autoconf' 'automake' 'git')
+source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev'
+        'hello-world-gtk-app.desktop') # Add the desktop file to source array if it's not in the git repo
 
-# Add the pkgver() function to automatically set the version based on the commit
+sha256sums=('SKIP'
+            'SKIP') # Add checksum/SKIP for the desktop file source if it's external
+
 pkgver() {
   cd "$pkgname"
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
@@ -23,14 +25,24 @@ pkgver() {
 
 build() {
   cd "${srcdir}/${pkgname}"
+  # Make the build first
   make build
-  make install
+  # Run 'make install', passing the temporary package directory ($pkgdir) as the DESTDIR
+  make install DESTDIR="${pkgdir}" PREFIX=/usr 
 }
 
 package() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
-  install -Dm755 "/pkg/hello-world-gtk-app.desktop" "$pkgdir/usr/share/applications/hello-world-gtk-app.desktop"
-  install -Dm755 "${pkgname%}" "$pkgdir/usr/bin/${pkgname%}"
+  # Note: we don't cd here, we operate relative to $srcdir and install to $pkgdir
+
+  # The 'make install DESTDIR=$pkgdir' command above already placed the binary in $pkgdir/usr/bin/
+
+  # Install the desktop file from the source directory into the package structure
+  install -Dm644 "${srcdir}/hello-world-gtk-app.desktop" "$pkgdir/usr/share/applications/hello-world-gtk-app.desktop"
+  
+  # The binary is already installed, so we remove the original manual install line:
+  # install -Dm755 "${pkgname%}" "$pkgdir/usr/bin/${pkgname%}"
+
+  # Install documentation files
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
   install -Dm644 code-of-conduct.md "$pkgdir/usr/share/doc/$pkgname/code-of-conduct.md"
