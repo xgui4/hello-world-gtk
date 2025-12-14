@@ -1,5 +1,5 @@
 pkgname=hello-world-gtk
-pkgver=0.0.0.1
+pkgver=r19.22f0e58
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')
@@ -9,19 +9,28 @@ depends=(
     'gtk4'
     'glib2'
     'glibc'
-    'xdg-open'
-) # List your runtime dependencies
-makedepends=('gcc' 'make' 'pkgconfig' 'autoconf' 'automake') # Build tools
-source=("${pkgname}-${pkgver}.tar.gz::github.com/archive/v${pkgver}.tar.gz")
-sha256sums=('SKIP') # Use 'SKIP' for development or calculate the actual checksum
+    'xdg-utils'
+) # dependencies
+makedepends=('gcc' 'make' 'pkgconfig' 'autoconf' 'automake' 'git') # Build tools
+source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev')
+sha256sums=('SKIP') # Checksums are skipped for VCS sources as they change constantly
+
+# Add the pkgver() function to automatically set the version based on the commit
+pkgver() {
+  cd "$pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
 
 build() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
-  ./configure --prefix=/usr
-  make
+  cd "${srcdir}/${pkgname}" 
+  make install
 }
 
 package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  make DESTDIR="${pkgdir}" install
+  install -Dm755 "/pkg/hello-world-gtk-app.desktop" "$pkgdir/usr/share/applications/hello-world-gtk-app.desktop"
+  install -Dm755 "${pkgname%}" "$pkgdir/usr/bin/${pkgname%}"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 code-of-conduct.md "$pkgdir/usr/share/doc/$pkgname/code-of-conduct.md"
 }

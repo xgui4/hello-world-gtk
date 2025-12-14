@@ -1,1 +1,5 @@
 bin
+output
+pkg/src
+pkg/pkg
+pkg/hello-world-gtk
