@@ -1,4 +1,3 @@
-#!/usr/bin/env xdg-open
 [Desktop Entry]
 
 Type=Application
@@ -7,6 +6,6 @@ Name=Hello World GTK App
 Comment=My First GTK App in Pure C
 Path=/usr/bin/
 Exec=hello-world-gtk-app
-Icon=hello-world-gtk-app
+Icon=xorg
 Terminal=true
 Categories=C;
