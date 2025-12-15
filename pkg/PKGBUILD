@@ -1,22 +1,27 @@
 pkgname=hello-world-gtk
-pkgver=r25.e8c1fbe # This will be updated by the pkgver() function
+pkgver=r27.6c33b4c
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')
 url="https://github.com/xgui4/hello-world-gtk"
 license=('MIT') 
 depends=(
-    'gtk4'
-    'glib2'
-    'glibc'
-    'xdg-utils'
+  'gtk4'
+  'glib2'
+  'glibc'
+  'xdg-utils'
 )
-makedepends=('gcc' 'make' 'pkgconfig' 'autoconf' 'automake' 'git')
-source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev'
-        'hello-world-gtk-app.desktop') # Add the desktop file to source array if it's not in the git repo
+makedepends=(
+  'gcc' 
+  'make' 
+  'pkgconfig' 
+  'autoconf' 
+  'automake' 
+  'git'
+)
+source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev')
 
-sha256sums=('SKIP'
-            'SKIP') # Add checksum/SKIP for the desktop file source if it's external
+sha256sums=('SKIP')
 
 pkgver() {
   cd "$pkgname"
@@ -25,24 +30,13 @@ pkgver() {
 
 build() {
   cd "${srcdir}/${pkgname}"
-  # Make the build first
-  make build
-  # Run 'make install', passing the temporary package directory ($pkgdir) as the DESTDIR
+  mkdir -p "${pkgdir}" 
+  cd "${srcdir}/${pkgname}"
   make install DESTDIR="${pkgdir}" PREFIX=/usr 
 }
 
 package() {
-  # Note: we don't cd here, we operate relative to $srcdir and install to $pkgdir
-
-  # The 'make install DESTDIR=$pkgdir' command above already placed the binary in $pkgdir/usr/bin/
-
-  # Install the desktop file from the source directory into the package structure
   install -Dm644 "${srcdir}/hello-world-gtk-app.desktop" "$pkgdir/usr/share/applications/hello-world-gtk-app.desktop"
-  
-  # The binary is already installed, so we remove the original manual install line:
-  # install -Dm755 "${pkgname%}" "$pkgdir/usr/bin/${pkgname%}"
-
-  # Install documentation files
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
   install -Dm644 code-of-conduct.md "$pkgdir/usr/share/doc/$pkgname/code-of-conduct.md"
