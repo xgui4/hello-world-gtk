@@ -3,7 +3,7 @@ CC = gcc
 SRC = main.c config.c
 BUILD_DIR = bin
 TARGET = $(BUILD_DIR)/hello-world-gtk-app
-PREFIX ?= /usr/
+PREFIX ?= /usr
 
 # Compilation flags
 GTK_CFLAGS := $(shell pkg-config --cflags gtk4)

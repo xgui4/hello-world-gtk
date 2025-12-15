@@ -1,5 +1,5 @@
 pkgname=hello-world-gtk
-pkgver=r27.6c33b4c
+pkgver=r28.cb46a17
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')
@@ -30,9 +30,7 @@ pkgver() {
 
 build() {
   cd "${srcdir}/${pkgname}"
-  mkdir -p "${pkgdir}" 
-  cd "${srcdir}/${pkgname}"
-  make install DESTDIR="${pkgdir}" PREFIX=/usr 
+  make install # DESTDIR="${pkgdir}" PREFIX=/usr 
 }
 
 package() {
