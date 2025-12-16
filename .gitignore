@@ -1,6 +1,10 @@
+# Commmon C + Makefile gitignore
 bin
 output
 pkg/src
 pkg/pkg
 pkg/hello-world-gtk
-pkg/hello-world-gtk-r30.6fdfd88-1-x86_64.pkg.tar.zst
+***pkg.tar.zst
+
+myresources.c
+myresources.h

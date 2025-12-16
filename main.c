@@ -1,10 +1,13 @@
 #include <gtk/gtk.h>
 #include "window.c"
 #include "config.h"
+#include <glib.h>
+#include <gio/gio.h>
+#include "myresources.h" 
+#include <stdio.h>
 
 int main (int argc, char **argv)
 {
-
   g_print("Starting the %s App Version %s by %s\n", app_name, version, app_author);
 
   GtkApplication *app;
