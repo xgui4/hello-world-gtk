@@ -1,0 +1,14 @@
+[Desktop Entry]
+
+Type=Application
+Version=0.0.0.1
+Name=Hello World GTK App
+Comment=My First GTK App in Pure C
+Path=/usr/bin/
+Exec=hello-world-gtk-app
+Icon=xorg
+Terminal=false
+StartupNotify=true
+DBusActivatable=true
+Categories=C;GTK;
+X-GNOME-UsesNotifications=true

@@ -1,1 +1,19 @@
+# Commmon C + Makefile gitignore
+
+# MakeFile Output
 bin
+output
+
+# Makepkg Ouput
+pkg/src
+pkg/pkg
+pkg/hello-world-gtk
+***pkg.tar.zst
+
+# vscode per-machine config 
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+
+# glib-compile-resources Output
+myresources.c
+myresources.h

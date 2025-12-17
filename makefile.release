@@ -41,7 +41,7 @@ all: $(TARGET)
 
 $(TARGET): $(SRC) | $(BUILD_DIR)
 	@echo "Compiling the program with GCC"
-	$(CC) $(GTK_CFLAGS) -g -O0 -Wall -Wextra -o $@ $^ $(GTK_LIBS) -fsanitize=address 
+	$(CC) $(GTK_CFLAGS) -o $@ $^ $(GTK_LIBS)
 
 # Rule to create the build directory
 $(BUILD_DIR):
