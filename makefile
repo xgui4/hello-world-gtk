@@ -22,14 +22,15 @@
 
 # Variables
 CC = gcc
-SRC = main.c config.c $(RES_C)
 BUILD_DIR = bin 
-TARGET = $(BUILD_DIR)/hello-world-gtk-app
+TARGET = bin/hello-world-gtk-app
 PREFIX ?= /usr
 
 RES_XML := myresources.xml
-RES_C := myresources.c
-RES_H := myresources.h
+RES_C := src/myresources.c
+RES_H := src/myresources.h
+
+SRC = src/main.c src/config.c src/utils.c $(RES_C)
 
 # Compilation flags
 GTK_CFLAGS := $(shell pkg-config --cflags gtk4)
@@ -40,7 +41,7 @@ all: $(TARGET)
 
 $(TARGET): $(SRC) | $(BUILD_DIR)
 	@echo "Compiling the program with GCC"
-	$(CC) $(GTK_CFLAGS) -o $@ $^ $(GTK_LIBS)
+	$(CC) $(GTK_CFLAGS) -g -o $@ $^ $(GTK_LIBS) -fsanitize=address 
 
 # Rule to create the build directory
 $(BUILD_DIR):
@@ -50,7 +51,8 @@ $(BUILD_DIR):
 # Define a dependency: myresources.c depends on myresources.xml
 $(RES_C): $(RES_XML)
 	@echo "Compiling the GIO resources files"
-	glib-compile-resources --generate-source --generate-header --target=$(basename $@) $<
+	glib-compile-resources --target=$(RES_C) --generate-source $<
+	glib-compile-resources --target=$(RES_H) --generate-header $<
 
 # Target to run the program
 run: $(TARGET)

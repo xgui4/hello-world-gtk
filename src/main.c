@@ -1,10 +1,7 @@
 #include <gtk/gtk.h>
 #include "window.c"
 #include "config.h"
-#include <glib.h>
-#include <gio/gio.h>
-#include "myresources.h" 
-#include <stdio.h>
+// #include "utils.h"
 
 int main (int argc, char **argv)
 {
@@ -15,9 +12,10 @@ int main (int argc, char **argv)
 
   app = gtk_application_new("dev.xgui4.hello-world-gtk", G_APPLICATION_DEFAULT_FLAGS);
   g_signal_connect(app, "activate", G_CALLBACK (activate), NULL);
-  
+
   status = g_application_run(G_APPLICATION (app), argc, argv);
   g_object_unref(app);
 
   return status;
+
 }

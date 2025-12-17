@@ -1,0 +1,1 @@
+int contains_argument(int argc, char *argv[], const char *target); 

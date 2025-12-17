@@ -5,6 +5,8 @@ pkg/src
 pkg/pkg
 pkg/hello-world-gtk
 ***pkg.tar.zst
+.vscode/c_cpp_properties.json
+.vscode/settings.json
 
 myresources.c
 myresources.h
