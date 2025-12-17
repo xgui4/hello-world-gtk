@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include "config.h"
+#include "myresources.h"
 
 static void print_hello(GtkWidget *widget, gpointer data)
 {
@@ -41,7 +42,7 @@ static void activate(GtkApplication *app, gpointer user_data)
     gtk_widget_set_margin_start(vbox, 10);
     gtk_widget_set_margin_end(vbox, 10);
 
-    logo_image = gtk_image_new_from_file("assets/image.jpg");
+    logo_image = gtk_image_new_from_resource("/xgui4/assets/image.jpg");
 
     gtk_widget_set_hexpand(logo_image, TRUE);
     gtk_widget_set_vexpand(logo_image, TRUE);

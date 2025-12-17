@@ -22,10 +22,15 @@
 
 # Variables
 CC = gcc
-SRC = main.c config.c
-BUILD_DIR = bin
-TARGET = $(BUILD_DIR)/hello-world-gtk-app
+BUILD_DIR = bin 
+TARGET = bin/hello-world-gtk-app
 PREFIX ?= /usr
+
+RES_XML := myresources.xml
+RES_C := src/myresources.c
+RES_H := src/myresources.h
+
+SRC = src/main.c src/config.c src/utils.c $(RES_C)
 
 # Compilation flags
 GTK_CFLAGS := $(shell pkg-config --cflags gtk4)
@@ -33,15 +38,21 @@ GTK_LIBS := $(shell pkg-config --libs gtk4)
 
 # Default target (Compile and run))
 all: $(TARGET)
-	make clean
-	make run
 
 $(TARGET): $(SRC) | $(BUILD_DIR)
-	$(CC) $(GTK_CFLAGS) -o $@ $^ $(GTK_LIBS)
+	@echo "Compiling the program with GCC"
+	$(CC) $(GTK_CFLAGS) -g -o $@ $^ $(GTK_LIBS) -fsanitize=address 
 
 # Rule to create the build directory
 $(BUILD_DIR):
+	@echo "Creating Build directory"
 	mkdir -p $(BUILD_DIR)
+
+# Define a dependency: myresources.c depends on myresources.xml
+$(RES_C): $(RES_XML)
+	@echo "Compiling the GIO resources files"
+	glib-compile-resources --target=$(RES_C) --generate-source $<
+	glib-compile-resources --target=$(RES_H) --generate-header $<
 
 # Target to run the program
 run: $(TARGET)
@@ -49,7 +60,8 @@ run: $(TARGET)
 
 # Target to clean up generated files and the directory
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf $(BUILD_DIR) $(RES_C) $(RES_H)
+	@echo "Cleaned up build artifacts and generated resource files."
 
 build: $(TARGET)
 
