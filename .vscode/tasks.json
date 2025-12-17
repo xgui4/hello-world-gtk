@@ -2,9 +2,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "make build",
+            "label": "make -f makefile.debug build",
             "type": "shell",
-            "command": "make build",
+            "command": "make -f makefile.debug clean && make -f makefile.debug build",
             "group": {
                 "kind": "build",
                 "isDefault": true

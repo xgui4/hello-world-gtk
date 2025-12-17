@@ -1,11 +1,34 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include "config.h"
-#include "myresources.h"
+#include "myresources.h" // ignore that error 
 
 static void print_hello(GtkWidget *widget, gpointer data)
 {
     g_print("Hello World From GTK!\n");
+    GtkAlertDialog * popup = gtk_alert_dialog_new("%s", "Hello World from GTK!");
+
+    // GtkWidget *entry = GTK_WIDGET(data);
+
+    const char *buttons[] = {"OK", NULL};
+    gtk_alert_dialog_set_buttons(popup, buttons);
+
+    gtk_alert_dialog_set_default_button(popup, 0);
+
+    gtk_alert_dialog_set_modal (popup, TRUE);
+
+    gtk_alert_dialog_set_detail(popup, "Hi!");
+
+    GtkRoot *root = gtk_widget_get_root(widget);
+    if (GTK_IS_WINDOW(root)) {
+        gtk_alert_dialog_show(popup, GTK_WINDOW(root));
+        g_print("Modal Alert Dialog did found the parent window. Lanching Dialog"); 
+    }
+    else {
+        g_print("Modal Alert Dialog did not found the parent window"); 
+    }
+
+    g_object_unref(popup);
 }
 
 static void go_to_github(GtkButton *button, gpointer user_data) {
@@ -32,6 +55,10 @@ static void activate(GtkApplication *app, gpointer user_data)
     GtkWidget *go_to_github_button;
     GtkWidget *text_field; 
 
+    GResource* gresource; 
+
+    GBytes* gbytes; 
+
     window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), app_name);
     gtk_window_set_default_size(GTK_WINDOW(window), 200, 200);
@@ -42,7 +69,7 @@ static void activate(GtkApplication *app, gpointer user_data)
     gtk_widget_set_margin_start(vbox, 10);
     gtk_widget_set_margin_end(vbox, 10);
 
-    logo_image = gtk_image_new_from_resource("/xgui4/assets/image.jpg");
+    logo_image = gtk_image_new_from_resource("/dev/xgui4/hello-world-gtk-app/image.jpg");
 
     gtk_widget_set_hexpand(logo_image, TRUE);
     gtk_widget_set_vexpand(logo_image, TRUE);
@@ -54,7 +81,7 @@ static void activate(GtkApplication *app, gpointer user_data)
 
     hello_world_button = gtk_button_new_with_label("Hello World From GTK!");
     gtk_widget_set_halign(hello_world_button, GTK_ALIGN_CENTER);
-    g_signal_connect(hello_world_button, "clicked", G_CALLBACK(print_hello), NULL);
+    g_signal_connect(hello_world_button, "clicked", G_CALLBACK(print_hello), text_field);
 
     checkbox1 = gtk_check_button_new_with_label("Activate Notification");
 
