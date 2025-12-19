@@ -18,6 +18,9 @@ enum cmd_args {
     * --about
     */
     CMD_ABOUT_LONG,
+    /*
+    * The number of command line arguments
+    */
     CMD_COUNT
 }; 
 

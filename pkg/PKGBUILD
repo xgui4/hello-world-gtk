@@ -1,5 +1,5 @@
 pkgname=hello-world-gtk
-pkgver=r37.83cdd7a
+pkgver=r38.cf440aa
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')

@@ -30,7 +30,7 @@ RES_XML := myresources.xml
 RES_C := src/myresources.c
 RES_H := src/myresources.h
 
-SRC = src/main.c src/config.c src/utils.c $(RES_C)
+SRC = src/main.c src/config.c src/utils.c src/window.c src/cli.c $(RES_C)
 
 # Compilation flags
 GTK_CFLAGS := $(shell pkg-config --cflags gtk4)

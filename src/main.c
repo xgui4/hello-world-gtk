@@ -1,19 +1,15 @@
 #include <gtk/gtk.h>
-#include "window.c"
+#include "window.h"
 #include "config.h"
 #include "utils.h"
-#include "cmd_args.c"
+#include "cli.h"
 
 int main (int argc, char **argv)
 {
   int status = 0;
 
-  if (contains_argument(argc, argv, cmd_args_name[CMD_VERSION]) || contains_argument(argc, argv, cmd_args_name[CMD_VERSION_LONG])) {
-    g_print("%s App Version %s by %s\n", app_name, version, app_author); 
-  }
-
-  if (contains_argument(argc, argv, cmd_args_name[CMD_ABOUT]) || contains_argument(argc, argv, cmd_args_name[CMD_ABOUT_LONG])) {
-    g_print(about); 
+  if (argc > 1) {
+    command_line_interface_display(argc, argv); 
   }
 
   else {
