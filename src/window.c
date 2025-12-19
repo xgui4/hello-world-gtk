@@ -24,10 +24,10 @@ static void print_hello(GtkWidget *widget, gpointer data)
     GtkRoot *root = gtk_widget_get_root(widget);
     if (GTK_IS_WINDOW(root)) {
         gtk_alert_dialog_show(popup, GTK_WINDOW(root));
-        g_print("Modal Alert Dialog did found the parent window. Lanching Dialog"); 
+        g_print("Modal Alert Dialog did found the parent window. Lanching Dialog \n"); 
     }
     else {
-        g_print("Modal Alert Dialog did not found the parent window"); 
+        g_print("Modal Alert Dialog did not found the parent window \n"); 
     }
 
     g_object_unref(popup);
@@ -47,8 +47,31 @@ static void send_notification(GtkCheckButton *checkbox, gpointer user_data) {
     }
 }
 
+typedef struct {
+    GtkWidget * vbox; 
+    GtkWidget * calendar; 
+} Secret; 
+
+static void activate_secret(GtkCheckButton *checkbox, gpointer user_data) {
+    Secret *data = (Secret *)user_data;
+    gboolean is_active = gtk_check_button_get_active(checkbox);
+
+    if (is_active) {
+        if (!data->calendar) { 
+            data->calendar = gtk_calendar_new();
+            gtk_box_append(GTK_BOX(data->vbox), data->calendar);
+        }
+    } 
+    else {
+        if (data->calendar) {
+            gtk_box_remove(GTK_BOX(data->vbox), data->calendar);
+            data->calendar = NULL; 
+        }
+    }
+}
+
 /*
-/* This is the function to activate the window 
+* This is the function to activate the window 
 */
 void activate(GtkApplication *app, gpointer user_data)
 {
@@ -58,6 +81,7 @@ void activate(GtkApplication *app, gpointer user_data)
     GtkWidget *hello_world_button;
     GtkWidget *logo_image;
     GtkWidget *checkbox1; 
+    GtkWidget *checkbox2; 
     GtkWidget *go_to_github_button;
     GtkWidget *text_field; 
 
@@ -97,11 +121,21 @@ void activate(GtkApplication *app, gpointer user_data)
     checkbox1 = gtk_check_button_new_with_label("Activate Notification");
     g_signal_connect(checkbox1, "toggled", G_CALLBACK(send_notification), NULL);
 
-    // Load the widgets
+
+
+    // checkbox_2 widget init
+    Secret *state = g_malloc(sizeof(Secret));
+    state->vbox = vbox;
+    state->calendar = NULL;
+    checkbox2 = gtk_check_button_new_with_label("Activate Secret");
+    g_signal_connect(checkbox2, "toggled", G_CALLBACK(activate_secret), state);
+
+    // Load the widgets (with tge good orders)
     gtk_box_append(GTK_BOX(vbox), logo_image);
     gtk_box_append(GTK_BOX(vbox), text_field);
     gtk_box_append(GTK_BOX(vbox), hello_world_button);
     gtk_box_append(GTK_BOX(vbox), checkbox1); 
+    gtk_box_append(GTK_BOX(vbox), checkbox2); 
     gtk_box_append(GTK_BOX(vbox), go_to_github_button); 
 
     // boilerplate code for loading and showing the window
