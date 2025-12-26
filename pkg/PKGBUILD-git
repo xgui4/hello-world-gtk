@@ -1,0 +1,50 @@
+# Maintainer xgui4 <xgui4@outlook.com>
+pkgname=hello-world-gtk
+pkgver=r40.2c865e2
+pkgrel=1
+pkgdesc="My First GTK App"
+arch=('x86_64')
+url="https://github.com/xgui4/hello-world-gtk"
+license=('MIT') 
+depends=(
+  'gtk4'
+  'glib2'
+  'glibc'
+  'xdg-utils'
+  'pango'
+  'cairo' 
+  'harfbuzz' 
+  'gdk-pixbuf2' 
+  'graphene' 
+  'vulkan-icd-loader'
+  'json-glib'
+)
+makedepends=(
+  'gcc' 
+  'make' 
+  'pkgconfig' 
+  'autoconf' 
+  'automake' 
+  'git'
+)
+source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev')
+
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+  cd "${srcdir}/${pkgname}"
+  make -f makefile.release build
+}
+
+package() {
+  install -Dm755 "${srcdir}/$pkgname/bin/$pkgname-app" "$pkgdir/usr/bin/$pkgname"
+  install -Dm755 "${srcdir}/$pkgname/pkg/hello-world-gtk-app.desktop" "$pkgdir/usr/share/applications/hello-world-gtk-app.desktop"
+  install -Dm644 "${srcdir}/$pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "${srcdir}/$pkgname/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 "${srcdir}/$pkgname/code-of-conduct.md" "$pkgdir/usr/share/doc/$pkgname/code-of-conduct.md"
+}

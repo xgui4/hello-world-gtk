@@ -1,4 +1,5 @@
 // config.h
+#pragma once
 #ifndef CONFIG_H
 #define CONFIG_H
 
@@ -15,7 +16,7 @@ extern const char * app_name;
 */
 extern const char * app_author; 
 /*
-* About information of the app
+* Information about the app
 */
 extern const char * about; 
 

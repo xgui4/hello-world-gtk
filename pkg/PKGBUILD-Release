@@ -1,5 +1,6 @@
+# Maintainer xgui4 <xgui4@outlook.com>
 pkgname=hello-world-gtk
-pkgver=r38.cf440aa
+pkgver=0.0.0.2
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')
@@ -10,6 +11,13 @@ depends=(
   'glib2'
   'glibc'
   'xdg-utils'
+  'pango'
+  'cairo' 
+  'harfbuzz' 
+  'gdk-pixbuf2' 
+  'graphene' 
+  'vulkan-icd-loader'
+  'json-glib'
 )
 makedepends=(
   'gcc' 
@@ -19,7 +27,7 @@ makedepends=(
   'automake' 
   'git'
 )
-source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev')
+source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#tag=0.0.0.2')
 
 sha256sums=('SKIP')
 

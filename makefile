@@ -30,11 +30,11 @@ RES_XML := myresources.xml
 RES_C := src/myresources.c
 RES_H := src/myresources.h
 
-SRC = src/main.c src/config.c src/utils.c src/window.c src/cli.c $(RES_C)
+SRC = src/main.c src/config.c src/utils.c src/window.c src/cli.c src/widgets/GTK_Button.c src/AppData.c $(RES_C)
 
 # Compilation flags
-GTK_CFLAGS := $(shell pkg-config --cflags gtk4)
-GTK_LIBS := $(shell pkg-config --libs gtk4)
+GTK_CFLAGS := $(shell pkg-config --cflags gtk4 json-glib-1.0 )
+GTK_LIBS := $(shell pkg-config --libs gtk4 json-glib-1.0)
 
 # Default target (Compile and run))
 all: $(TARGET)

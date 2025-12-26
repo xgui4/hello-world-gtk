@@ -1,3 +1,7 @@
+#pragma once
+
+#ifndef CMD_ARGS_H
+#define CMD_ARGS_H
 /*
  * Command Line Arguments of the programs
  */
@@ -33,3 +37,5 @@ char * cmd_args_name[] = {
     "--a",
     "--about"
 };  
+
+#endif
