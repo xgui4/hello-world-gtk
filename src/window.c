@@ -223,7 +223,7 @@ void activate(GtkApplication *app, gpointer app_data)
     gtk_box_append(GTK_BOX(vbox), checkbox1); 
     gtk_box_append(GTK_BOX(vbox), checkbox2); 
     gtk_box_append(GTK_BOX(vbox), go_to_github_button);
-    gtk_box_append(GTK_BOX(vbox), save_button); 
+    // gtk_box_append(GTK_BOX(vbox), save_button);  need to be fixed
 
     // boilerplate code for loading and showing the window
     gtk_window_present(GTK_WINDOW(window));
