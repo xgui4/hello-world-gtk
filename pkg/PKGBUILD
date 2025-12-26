@@ -1,4 +1,4 @@
-# Maintainer xgui4 <xgui4@outlook.com>
+# Maintainer xgui4 name@example.com
 pkgname=hello-world-gtk
 pkgver=0.0.0.2
 pkgrel=1
@@ -29,12 +29,7 @@ makedepends=(
 )
 source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#tag=0.0.0.2')
 
-sha256sums=('SKIP')
-
-pkgver() {
-  cd "$pkgname"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
-}
+sha256sums=('SKIP') # will have the check later 
 
 build() {
   cd "${srcdir}/${pkgname}"

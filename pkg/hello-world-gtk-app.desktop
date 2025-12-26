@@ -1,10 +1,10 @@
 [Desktop Entry]
 
 Type=Application
-Version=0.0.0.1
+Version=0.0.0.2
 Name=Hello World GTK App
 Comment=My First GTK App in Pure C
-Path=/usr/bin/
+Path=/usr/bin
 Exec=hello-world-gtk
 Icon=xorg
 Terminal=false
