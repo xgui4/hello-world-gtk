@@ -6,24 +6,17 @@
 #include "AppData.h"
 #include "widgets/GTK_Button.h"
 #include "utils.h"
+#include "widgets/alert_dialog.h"
 #include "myresources.h" // ignore that error 
 
 static void print_hello(GtkWidget *widget, gpointer data)
 {
     g_print("Hello World From GTK!\n");
-    GtkAlertDialog * popup = gtk_alert_dialog_new("%s", "Hello World from GTK!");
 
     const char *text = gtk_editable_get_text(GTK_EDITABLE(data));
-
     const char *buttons[] = {"OK", NULL};
 
-    gtk_alert_dialog_set_buttons(popup, buttons);
-
-    gtk_alert_dialog_set_default_button(popup, 0);
-
-    gtk_alert_dialog_set_modal (popup, TRUE);
-
-    gtk_alert_dialog_set_detail(popup, text);
+    GtkAlertDialog *popup = gtk_simple_alert_dialog_create("Hello World From GTK!", text, buttons, TRUE); 
 
     GtkRoot *root = gtk_widget_get_root(widget);
     if (GTK_IS_WINDOW(root)) {
@@ -83,15 +76,10 @@ static void activate_secret(GtkCheckButton *checkbox, gpointer app_data) {
 }
 
 static void save(GtkButton* button, gpointer* data) {
-
     Window_Data *window_data = (Window_Data*)data;
-
     AppData *app_data = window_data->app_data; 
-
     Secret* state = window_data->state; 
-
     GtkWidget* text_field = window_data->text_field; 
-
     GtkWidget* text_field_username = window_data->text_field_username; 
 
     const char * const_txt = gtk_editable_get_text(GTK_EDITABLE(text_field)); 
@@ -110,11 +98,8 @@ static void save(GtkButton* button, gpointer* data) {
     }
 
     JsonNode* root = serialize_app_data(app_data); 
-
     json_node_to_json_file(root, "test.json"); 
-
     json_node_free(root); 
-
 }
 
 static GtkWidget* window_init(GtkApplication* app, int width, int height) {
@@ -182,10 +167,40 @@ static Secret* state_init(GtkWidget* vbox) {
     return state; 
 }
 
+static Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, AppData* user_data){
+    Window_Data *data = g_malloc(sizeof(Window_Data));
+    data->state = state; 
+    data->text_field = text_field; 
+    data->text_field_username = text_field_user_name;
+    data->app_data = user_data; 
+    return data; 
+}
+
 static GtkWidget* checkbox2_init(const char* default_label, Secret* state) {
     GtkWidget *checkbox2 = gtk_check_button_new_with_label(default_label);
     g_signal_connect(checkbox2, "toggled", G_CALLBACK(activate_secret), state);
     return checkbox2; 
+}
+
+static void load_widgets(
+    GtkWidget *vbox, 
+    GtkWidget *logo_picture, 
+    GtkWidget *text_field, 
+    GtkWidget *text_field_user_name, 
+    GtkWidget *hello_world_button, 
+    GtkWidget *checkbox1, 
+    GtkWidget *checkbox2, 
+    GtkWidget *go_to_github_button, 
+    GtkWidget *save_button)
+{
+    gtk_box_append(GTK_BOX(vbox), logo_picture);
+    gtk_box_append(GTK_BOX(vbox), text_field);
+    gtk_box_append(GTK_BOX(vbox), text_field_user_name);
+    gtk_box_append(GTK_BOX(vbox), hello_world_button);
+    gtk_box_append(GTK_BOX(vbox), checkbox1);
+    gtk_box_append(GTK_BOX(vbox), checkbox2);
+    gtk_box_append(GTK_BOX(vbox), go_to_github_button);
+    gtk_box_append(GTK_BOX(vbox), save_button);
 }
 
 void activate(GtkApplication *app, gpointer app_data)
@@ -207,25 +222,24 @@ void activate(GtkApplication *app, gpointer app_data)
     Secret *state = state_init(vbox); 
     GtkWidget *checkbox2 = checkbox2_init("Activate Secret", state);
 
-    Window_Data *data = g_malloc(sizeof(Window_Data));
-    data->state = state; 
-    data->text_field = text_field; 
-    data->text_field_username = text_field_user_name;
-    data->app_data = user_data; 
+    Window_Data *data = window_data_init(state, text_field, text_field_user_name, user_data);
 
     GtkWidget *save_button = save_button_init("Save configuraton", GTK_ALIGN_CENTER, data); 
 
-    // Load the widgets (with the good orders)
-    gtk_box_append(GTK_BOX(vbox), logo_picture);
-    gtk_box_append(GTK_BOX(vbox), text_field);
-    gtk_box_append(GTK_BOX(vbox), text_field_user_name);
-    gtk_box_append(GTK_BOX(vbox), hello_world_button);
-    gtk_box_append(GTK_BOX(vbox), checkbox1); 
-    gtk_box_append(GTK_BOX(vbox), checkbox2); 
-    gtk_box_append(GTK_BOX(vbox), go_to_github_button);
-    // gtk_box_append(GTK_BOX(vbox), save_button);  need to be fixed
+    load_widgets(
+        vbox, 
+        logo_picture, 
+        text_field, 
+        text_field_user_name, 
+        hello_world_button, 
+        checkbox1, 
+        checkbox2, 
+        go_to_github_button, 
+        save_button
+    );
 
     // boilerplate code for loading and showing the window
     gtk_window_present(GTK_WINDOW(window));
     gtk_window_set_child(GTK_WINDOW(window), vbox);
 }
+

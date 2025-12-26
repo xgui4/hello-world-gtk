@@ -1,0 +1,6 @@
+id : io.github.xgui4.hello-world-gtk.yml
+runtime : org.freedesktop.Platform
+runtime-version : 25.08
+sdk : org.freedesktop.Sdk 
+command : hello-world-gtk
+modules : 
