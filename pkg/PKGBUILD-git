@@ -1,6 +1,6 @@
 # Maintainer xgui4 name@example.com
-pkgname=hello-world-gtk-git
-pkgver=r40.2c865e2
+pkgname=hello-world-gtk
+pkgver=r45.280393a
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')
@@ -27,7 +27,7 @@ makedepends=(
   'automake' 
   'git'
 )
-source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev')
+source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=unstable')
 
 sha256sums=('SKIP')
 

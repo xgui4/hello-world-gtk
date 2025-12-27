@@ -15,6 +15,12 @@
  */
 GtkAlertDialog* gtk_simple_alert_dialog_create(const char* title, const char* body, const char* buttons[], gboolean is_modal); 
 
-// gboolean gtk_simple_alert_dialog_show(GtkWidget* root, ); 
+/**
+ * @brief show the dialog and report failure with a gboolean
+ * @param widget The parent widget that own the Alert Dialog
+ * @param popup The GtkAlertDialog dialog
+ * @return gboolean, TRUE if success, FALSE if otherwise
+ */
+gboolean gtk_simple_alert_dialog_show(GtkWidget* widget, GtkAlertDialog* popup); 
 
 #endif

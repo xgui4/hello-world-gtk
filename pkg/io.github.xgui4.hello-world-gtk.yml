@@ -4,7 +4,7 @@ runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: hello-world-gtk
 finish-args:
-  - --socket=fallback-x11
+  - --socket=x11
   - --socket=wayland
   - --device=dri
   - --share=ipc
