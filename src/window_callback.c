@@ -3,7 +3,7 @@
 #include "config.h"
 #include "AppData.h"
 #include "window.h"
-#include "widgets/GTK_Button.h"
+#include "widgets/button.h"
 #include "utils.h"
 #include "widgets/alert_dialog.h"
 #include "myresources.h"
@@ -44,15 +44,15 @@ void activate_secret(GtkCheckButton *checkbox, gpointer app_data) {
     gboolean is_active = gtk_check_button_get_active(checkbox);
 
     if (is_active) {
-        if (!data->calendar) { 
-            data->calendar = gtk_calendar_new();
-            gtk_box_append(GTK_BOX(data->vbox), data->calendar);
+        if (!data->secret_entry) { 
+            data->secret_entry = secret_input_init("Écrivez votre secret ici");
+            gtk_box_append(GTK_BOX(data->vbox), data->secret_entry);
         }
     } 
     else {
-        if (data->calendar) {
-            gtk_box_remove(GTK_BOX(data->vbox), data->calendar);
-            data->calendar = NULL; 
+        if (data->secret_entry) {
+            gtk_box_remove(GTK_BOX(data->vbox), data->secret_entry);
+            data->secret_entry = NULL; 
         }
     }
 }
@@ -74,16 +74,38 @@ void save(GtkButton* button, gpointer data) {
         current_app_data->msg = g_strdup(const_txt); 
     }
 
-    if (state_copy != NULL && state_copy->calendar != NULL) {
-        const char *const_txt_birtday = g_date_time_format(gtk_calendar_get_date(GTK_CALENDAR(state_copy->calendar)), "%Y-%m-%d %H:%M:%S"); 
-        current_app_data->birthday = g_strdup(const_txt_birtday); 
+    else {
+        current_app_data->msg = NULL; 
+    }
+    
+    if (window_data->calendar != NULL) {
+        // const char *const_txt_birthday = g_date_time_format(gtk_calendar_get_date(GTK_CALENDAR(window_data->calendar)), "%Y-%m-%d %H:%M:%S"); 
+        // current_app_data->birthday = g_strdup(const_txt_birthday); 
+        current_app_data->birthday = NULL;  // temporaly before i fix this method
+    }
+
+    else {
+        current_app_data->birthday = NULL; 
+    }
+
+    if (state_copy != NULL && state_copy->secret_entry != NULL) {
+        const char *const_txt_secret = gtk_editable_get_text(GTK_EDITABLE(state_copy->secret_entry)); 
+        current_app_data->secret = g_strdup(const_txt_secret);  
+    }
+
+    else {
+        current_app_data->secret = NULL;
     }
     
     if (text_field_username_copy != NULL) {
         const char *const_txt_username = gtk_editable_get_text(GTK_EDITABLE(text_field_username_copy)); 
         current_app_data->user_name = g_strdup(const_txt_username);  
     }
-    
+
+    else {
+        current_app_data->user_name = NULL;
+    }
+
     JsonNode* root = serialize_app_data(current_app_data); 
     json_node_to_json_file(root, "data.json"); 
     json_node_free(root); 

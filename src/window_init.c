@@ -6,7 +6,7 @@
 #include "config.h"
 #include "AppData.h"
 #include "window.h"
-#include "widgets/GTK_Button.h"
+#include "widgets/button.h"
 #include "utils.h"
 #include "widgets/alert_dialog.h"
 #include "myresources.h" 
@@ -55,7 +55,7 @@ GtkWidget* text_field_init() {
 }
 
 GtkWidget* save_button_init(const char* label, GtkAlign align, Window_Data *data) {
-    GtkWidget *save_button = gtk_button_init(label, align, G_CALLBACK(save), data); 
+    GtkWidget *save_button = button_init(label, align, G_CALLBACK(save), data); 
     return save_button; 
 }
 
@@ -82,7 +82,6 @@ GtkWidget* checkbox1_init(const char* default_label, GtkApplication* app) {
 Secret* state_init(GtkWidget* vbox) {
     Secret *state = g_malloc(sizeof(Secret));
     state->vbox = vbox;
-    state->calendar = NULL;
     state->secret_entry = NULL; 
     return state; 
 }
@@ -100,4 +99,18 @@ GtkWidget* checkbox2_init(const char* default_label, Secret* state) {
     GtkWidget *checkbox2 = gtk_check_button_new_with_label(default_label);
     g_signal_connect(checkbox2, "toggled", G_CALLBACK(activate_secret), state);
     return checkbox2; 
+}
+
+GtkWidget* calendar_init() {
+    GtkWidget *calendar = gtk_calendar_new();
+    return calendar; 
+}
+
+GtkWidget *secret_input_init(const char *label)
+{
+    GtkWidget *text_field = gtk_entry_new(); 
+
+    gtk_entry_set_placeholder_text(GTK_ENTRY(text_field), label); 
+
+    return text_field; 
 }

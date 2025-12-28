@@ -4,7 +4,7 @@
 #include "window.h"
 #include "config.h"
 #include "AppData.h"
-#include "widgets/GTK_Button.h"
+#include "widgets/button.h"
 #include "utils.h"
 #include "widgets/alert_dialog.h"
 #include "myresources.h" // ignore that error 
@@ -18,6 +18,7 @@ static void load_widgets(
     GtkWidget *hello_world_button, 
     GtkWidget *checkbox1, 
     GtkWidget *checkbox2, 
+    GtkWidget *calendar,
     GtkWidget *go_to_github_button, 
     GtkWidget *save_button
 ){
@@ -27,6 +28,7 @@ static void load_widgets(
     gtk_box_append(GTK_BOX(vbox), hello_world_button);
     gtk_box_append(GTK_BOX(vbox), checkbox1);
     gtk_box_append(GTK_BOX(vbox), checkbox2);
+    gtk_box_append(GTK_BOX(vbox), calendar); 
     gtk_box_append(GTK_BOX(vbox), go_to_github_button);
     gtk_box_append(GTK_BOX(vbox), save_button);
 }
@@ -49,6 +51,7 @@ void activate(GtkApplication *app, gpointer app_data)
     GtkWidget *checkbox1 = checkbox1_init("Activate Notification", app);
     Secret *state = state_init(vbox); 
     GtkWidget *checkbox2 = checkbox2_init("Activate Secret", state);
+    GtkWidget *calendar = calendar_init(); 
     Window_Data *data = window_data_init(state, text_field, text_field_user_name, user_data);
     GtkWidget *save_button = save_button_init("Save configuraton", GTK_ALIGN_CENTER, data); 
 
@@ -60,6 +63,7 @@ void activate(GtkApplication *app, gpointer app_data)
         hello_world_button, 
         checkbox1, 
         checkbox2, 
+        calendar,
         go_to_github_button, 
         save_button
     );

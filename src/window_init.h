@@ -4,12 +4,10 @@
 #include <gtk/gtk.h>
 #include "AppData.h"
 #include "utils.h"
-#include "widgets/alert_dialog.h"
 #include "myresources.h"
 
 typedef struct Secret {
     GtkWidget *vbox; 
-    GtkWidget *calendar; 
     GtkWidget *secret_entry;
 } Secret; 
 
@@ -17,6 +15,7 @@ typedef struct Window_Data {
     Secret* state; 
     GtkWidget* text_field; 
     GtkWidget* text_field_username;
+    GtkWidget* calendar; 
     AppData* app_data; 
 } Window_Data; 
 
@@ -42,5 +41,9 @@ Secret* state_init(GtkWidget* vbox);
 Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, AppData* user_data); 
 
 GtkWidget* checkbox2_init(const char* default_label, Secret* state); 
+
+GtkWidget* calendar_init(); 
+
+GtkWidget* secret_input_init(const char* label); 
 
 #endif
