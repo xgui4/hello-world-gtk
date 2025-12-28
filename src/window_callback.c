@@ -1,8 +1,5 @@
 #include <gtk/gtk.h>
-#include <stdlib.h>
-#include <json-glib-1.0/json-glib/json-glib.h>
 #include "window_init.h"
-#include "window.h"
 #include "config.h"
 #include "AppData.h"
 #include "window.h"
@@ -27,7 +24,7 @@ void print_hello(GtkWidget *widget, gpointer data)
 }
 
 void go_to_github(GtkButton *button, gpointer app_data) {
-    const char* url = "https://github.com/xgui4/"; 
+    const char* url = repo_link; 
     open_at(url); 
 }
 
@@ -60,29 +57,34 @@ void activate_secret(GtkCheckButton *checkbox, gpointer app_data) {
     }
 }
 
-void save(GtkButton* button, gpointer* data) {
+void save(GtkButton* button, gpointer data) {
     Window_Data *window_data = (Window_Data*)data;
-    AppData *app_data = window_data->app_data; 
-    Secret* state = window_data->state; 
-    GtkWidget* text_field = window_data->text_field; 
-    GtkWidget* text_field_username = window_data->text_field_username; 
-
-    const char * const_txt = gtk_editable_get_text(GTK_EDITABLE(text_field)); 
-
-    if (app_data->msg != const_txt) {
-        strcpy(app_data->msg, const_txt); 
+    if (window_data == NULL || window_data->app_data == NULL) {
+        g_print("AppData is corrupted, cancelling the save.\n");
+        return; 
     }
 
-    app_data->msg =  gtk_editable_get_text(GTK_EDITABLE(text_field)); 
-    if (state->calendar != NULL) {
-        app_data->birthday = g_date_time_format(gtk_calendar_get_date(GTK_CALENDAR(state->calendar)), "%Y-%m-%d %H:%M:%S"); 
+    AppData *current_app_data = window_data->app_data;
+    Secret  *state_copy = window_data->state; 
+    GtkWidget *text_field_copy = window_data->text_field;
+    GtkWidget *text_field_username_copy = window_data->text_field_username; 
+
+    if (text_field_copy != NULL) {
+        const char *const_txt = gtk_editable_get_text(GTK_EDITABLE(text_field_copy)); 
+        current_app_data->msg = g_strdup(const_txt); 
+    }
+
+    if (state_copy != NULL && state_copy->calendar != NULL) {
+        const char *const_txt_birtday = g_date_time_format(gtk_calendar_get_date(GTK_CALENDAR(state_copy->calendar)), "%Y-%m-%d %H:%M:%S"); 
+        current_app_data->birthday = g_strdup(const_txt_birtday); 
     }
     
-    if (state->secret_entry != NULL) {
-        app_data->user_name = gtk_editable_get_text(GTK_EDITABLE(text_field_username)); 
+    if (text_field_username_copy != NULL) {
+        const char *const_txt_username = gtk_editable_get_text(GTK_EDITABLE(text_field_username_copy)); 
+        current_app_data->user_name = g_strdup(const_txt_username);  
     }
-
-    JsonNode* root = serialize_app_data(app_data); 
-    json_node_to_json_file(root, "test.json"); 
+    
+    JsonNode* root = serialize_app_data(current_app_data); 
+    json_node_to_json_file(root, "data.json"); 
     json_node_free(root); 
 }

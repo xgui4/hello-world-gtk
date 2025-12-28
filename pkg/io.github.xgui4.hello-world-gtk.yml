@@ -9,7 +9,7 @@ finish-args:
   - --device=dri
   - --share=ipc
 modules:
-  - name: my-app
+  - name: hello-world-gtk
     buildsystem: simple
     build-commands:
       - cd ../

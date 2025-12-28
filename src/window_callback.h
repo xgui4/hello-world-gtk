@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WINDOW_INIT_H
-#define WINDOW_INIT_H
+#ifndef WINDOW_CALLBACK_H
+#define WINDOW_CALLBACK_H
 #include <gtk/gtk.h>
 #include "AppData.h"
 #include "utils.h"
@@ -15,6 +15,6 @@ extern void send_notification(GtkCheckButton *checkbox, gpointer app_data);
 
 extern void activate_secret(GtkCheckButton *checkbox, gpointer app_data);
 
-extern void save(GtkButton* button, gpointer* data); 
+extern void save(GtkButton* button, gpointer data); 
 
 #endif

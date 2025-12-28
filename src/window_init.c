@@ -20,7 +20,7 @@ extern void send_notification(GtkCheckButton *checkbox, gpointer app_data);
 
 extern void activate_secret(GtkCheckButton *checkbox, gpointer app_data);
 
-extern void save(GtkButton* button, gpointer* data); 
+extern void save(GtkButton* button, gpointer data); 
 
 GtkWidget* window_init(GtkApplication* app, int width, int height) {
     GtkWidget* window = gtk_application_window_new(app);

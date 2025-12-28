@@ -20,12 +20,14 @@ void json_node_to_json_file(JsonNode* root, const char* filename) {
     json_generator_set_pretty(gen, TRUE);
 
     GError *error = NULL;
-    if (!json_generator_to_file(gen, filename, &error)) {
+
+    gboolean success = json_generator_to_file(gen, filename, &error);
+
+    if (!success) {
         g_printerr("Error saving file: %s\n", error->message);
         g_error_free(error);
-    }
+    } 
 
-    // Clean up
     g_object_unref(gen);
 }
 
