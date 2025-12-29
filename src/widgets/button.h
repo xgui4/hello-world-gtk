@@ -1,3 +1,5 @@
+/** @file */
+
 #pragma once
 
 #ifndef BUTTON_H

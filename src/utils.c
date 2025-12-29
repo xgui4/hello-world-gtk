@@ -33,11 +33,6 @@ void json_node_to_json_file(JsonNode* root, const char* filename) {
 
 gboolean open_at(const char *path)
 {
-    #if defined __APPLE__
-    gprint("Unsupported OS detected");
-    return FALSE;
-    #endif
-
     GError *error = NULL;
     gboolean success;
 

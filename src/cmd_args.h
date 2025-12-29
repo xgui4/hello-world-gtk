@@ -1,3 +1,5 @@
+/** @file */
+
 #pragma once
 
 #ifndef CMD_ARGS_H

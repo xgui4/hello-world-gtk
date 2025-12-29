@@ -1,6 +1,10 @@
+/** @file  */
+
 #pragma once
+
 #ifndef WINDOW_H
 #define WINDOW_H
+
 #include <gtk/gtk.h>
 
 /*

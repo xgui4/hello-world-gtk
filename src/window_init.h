@@ -1,6 +1,10 @@
+/** @file */
+
 #pragma once
+
 #ifndef WINDOW_INIT_H
 #define WINDOW_INIT_H
+
 #include <gtk/gtk.h>
 #include "AppData.h"
 #include "utils.h"

@@ -1,6 +1,6 @@
 # Maintainer xgui4 name@example.com
 pkgname=hello-world-gtk
-pkgver=r46.dd821a2
+pkgver=r48.ec6e35c
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')

@@ -1,3 +1,5 @@
+/** @file */
+
 #pragma once
 
 #ifndef ALERT_DIALOG_H
