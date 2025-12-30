@@ -9,7 +9,7 @@
 #include "myresources.h"
 #include "window_callback.h"
 
-void print_hello(GtkWidget *widget, gpointer data)
+void popup_hello_world_button(GtkWidget *widget, gpointer data)
 {
     g_print("Hello World From GTK!\n");
 
@@ -67,6 +67,8 @@ void save(GtkButton* button, gpointer data) {
     AppData *current_app_data = window_data->app_data;
     Secret  *state_copy = window_data->state; 
     GtkWidget *text_field_copy = window_data->text_field;
+    GtkWidget *birthday_copy = window_data->calendar; 
+    GtkWidget *secret_copy = state_copy->secret_entry; 
     GtkWidget *text_field_username_copy = window_data->text_field_username; 
 
     if (text_field_copy != NULL) {
@@ -78,10 +80,10 @@ void save(GtkButton* button, gpointer data) {
         current_app_data->msg = NULL; 
     }
     
-    if (window_data->calendar != NULL) {
-        // const char *const_txt_birthday = g_date_time_format(gtk_calendar_get_date(GTK_CALENDAR(window_data->calendar)), "%Y-%m-%d %H:%M:%S"); 
+    if (birthday_copy != NULL) {
+        // const char *const_txt_birthday = g_date_time_format(gtk_calendar_get_date(GTK_CALENDAR(birthday_copy)), "%Y-%m-%d %H:%M:%S"); 
         // current_app_data->birthday = g_strdup(const_txt_birthday); 
-        current_app_data->birthday = NULL;  // temporaly before i fix this method
+        current_app_data->birthday = NULL; 
     }
 
     else {
@@ -89,7 +91,7 @@ void save(GtkButton* button, gpointer data) {
     }
 
     if (state_copy != NULL && state_copy->secret_entry != NULL) {
-        const char *const_txt_secret = gtk_editable_get_text(GTK_EDITABLE(state_copy->secret_entry)); 
+        const char *const_txt_secret = gtk_editable_get_text(GTK_EDITABLE(secret_copy)); 
         current_app_data->secret = g_strdup(const_txt_secret);  
     }
 

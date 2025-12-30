@@ -6,3 +6,4 @@ const char * app_name = "Hello World GTK";
 const char * app_author = "Xgui4 Studio";
 const char * about = "My First GTK App in Pure C";
 const char * repo_link = "https://github.com/xgui4/"; 
+const char * language = "en"; 

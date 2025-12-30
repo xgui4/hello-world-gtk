@@ -1,3 +1,5 @@
+/** @file The main function of the program */
+
 #include <gtk/gtk.h>
 #include "window.h"
 #include "config.h"
@@ -14,6 +16,7 @@ int main (int argc, char **argv)
   }
 
   else {
+    
     g_print("Starting the %s App Version %s by %s\n", app_name, version, app_author);
 
     AppData *app_data = malloc(sizeof *app_data); 

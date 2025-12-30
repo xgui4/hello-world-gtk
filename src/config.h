@@ -24,5 +24,9 @@ extern const char * about;
 * Link of the repo to go with the button to the repo
 */
 extern const char * repo_link; 
-
+/*
+* Default Language for the App
+*/
+extern const char * language; 
+ 
 #endif // CONFIG_H

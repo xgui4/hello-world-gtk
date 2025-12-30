@@ -12,7 +12,7 @@
 #include "myresources.h" 
 #include "window_callback.h"
 
-extern void print_hello(GtkWidget *widget, gpointer data); 
+extern void popup_hello_world_button(GtkWidget *widget, gpointer data); 
 
 extern void go_to_github(GtkButton *button, gpointer app_data); 
 
@@ -62,7 +62,7 @@ GtkWidget* save_button_init(const char* label, GtkAlign align, Window_Data *data
 GtkWidget* hello_world_button_init(const char* default_label, GtkAlign align, GtkWidget* text_field) {
     GtkWidget *hello_world_button = gtk_button_new_with_label(default_label);
     gtk_widget_set_halign(hello_world_button, align);
-    g_signal_connect(hello_world_button, "clicked", G_CALLBACK(print_hello), text_field);
+    g_signal_connect(hello_world_button, "clicked", G_CALLBACK(popup_hello_world_button), text_field);
     return hello_world_button; 
 }
 
