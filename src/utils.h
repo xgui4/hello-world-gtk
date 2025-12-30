@@ -1,10 +1,13 @@
 /** @file */
 
 #pragma once
+
 #ifndef UTILS_H
 #define UTILS_H
+
 #include <gtk/gtk.h>
 #include "json-glib-1.0/json-glib/json-glib.h"
+#include "locale.h"
 
 /** 
  * @brief Check if the programs was executed with a command line argument
@@ -52,5 +55,14 @@ void show_notification_with_custom_icon(GtkApplication *app, GIcon *icon, const 
  * @param body* the string pointer of the notification body 
  */
 void show_notification(GtkApplication *app, const char *title, const char *body); 
+
+/**
+ * @brief Get the string from local object
+ * 
+ * @param local The locale to get the string
+ * @param key  The key of the string
+ * @return char* the value of the key
+ */
+// char* get_string_from_local(Locale locale, char* key); 
 
 #endif

@@ -1,4 +1,4 @@
-#include "AppData.h"
+#include "app_data.h"
 #include "json-glib-1.0/json-glib/json-glib.h"
 
 JsonNode* serialize_app_data(AppData *self) {

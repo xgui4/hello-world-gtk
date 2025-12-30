@@ -4,10 +4,12 @@
 
 #ifndef CMD_ARGS_H
 #define CMD_ARGS_H
-/*
- * Command Line Arguments of the programs
+
+/**
+ * @brief Command Line Arguments of the programs
+ * 
  */
-enum cmd_args {
+typedef enum CmdArg {
     /*
     "--v"
     */
@@ -23,16 +25,13 @@ enum cmd_args {
     /*
     * --about
     */
-    CMD_ABOUT_LONG,
-    /*
-    * The number of command line arguments
-    */
-    CMD_COUNT
-}; 
+    CMD_ABOUT_LONG
+} CmdArg; 
 
-/*
-* This array of string alows to get the value of the cmd_args enum 
-*/
+/**
+ * @brief This pointer of a array of string alows to get the value of the CmdArg enum 
+ * 
+ */
 char * cmd_args_name[] = {
     "--v",
     "--version",

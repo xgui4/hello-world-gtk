@@ -6,7 +6,7 @@
 #define WINDOW_INIT_H
 
 #include <gtk/gtk.h>
-#include "AppData.h"
+#include "app_data.h"
 #include "utils.h"
 #include "myresources.h"
 

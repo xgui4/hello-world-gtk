@@ -6,7 +6,7 @@
 #define WINDOW_CALLBACK_H
 
 #include <gtk/gtk.h>
-#include "AppData.h"
+#include "app_data.h"
 #include "utils.h"
 #include "widgets/alert_dialog.h"
 #include "myresources.h"

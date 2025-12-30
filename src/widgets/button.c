@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "../window.h"
 #include "../config.h"
-#include "../AppData.h"
+#include "../app_data.h"
 #include "button.h"
 #include "../myresources.h"
 

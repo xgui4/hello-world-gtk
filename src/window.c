@@ -3,7 +3,7 @@
 #include <json-glib-1.0/json-glib/json-glib.h>
 #include "window.h"
 #include "config.h"
-#include "AppData.h"
+#include "app_data.h"
 #include "widgets/button.h"
 #include "utils.h"
 #include "widgets/alert_dialog.h"

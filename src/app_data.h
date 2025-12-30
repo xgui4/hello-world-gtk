@@ -1,9 +1,10 @@
 /** @file */
 
 #pragma once
-#ifndef APPDATA_H
-#define APPDATA_H
-#include "AppData.h"
+
+#ifndef APP_DATA_H
+#define APP_DATA_H
+
 #include "json-glib-1.0/json-glib/json-glib.h"
 
 /**

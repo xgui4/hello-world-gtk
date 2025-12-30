@@ -4,7 +4,7 @@
 #include "window_init.h"
 #include "window.h"
 #include "config.h"
-#include "AppData.h"
+#include "app_data.h"
 #include "window.h"
 #include "widgets/button.h"
 #include "utils.h"
