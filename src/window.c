@@ -52,7 +52,7 @@ void activate(GtkApplication *app, gpointer app_data)
     Secret *state = state_init(vbox); 
     GtkWidget *checkbox2 = checkbox2_init("Activate Secret", state);
     GtkWidget *calendar = calendar_init(); 
-    Window_Data *data = window_data_init(state, text_field, text_field_user_name, user_data);
+    Window_Data *data = window_data_init(state, text_field, text_field_user_name, calendar, user_data);
     GtkWidget *save_button = save_button_init("Save configuraton", GTK_ALIGN_CENTER, data); 
 
     load_widgets(

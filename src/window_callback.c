@@ -92,25 +92,23 @@ void save(GtkButton* button, gpointer data) {
         current_app_data->msg = NULL; 
     }
 
-    /*
     if (birthday_copy != NULL) {
         GDateTime *date = gtk_calendar_get_date(GTK_CALENDAR(birthday_copy));
 
         if (date != NULL) {
             char *formatted_date = g_date_time_format(date, "%Y-%m-%d");
 
-            g_free(current_app_data->birthday);
+            g_clear_pointer(&current_app_data->birthday, g_free);
             current_app_data->birthday = g_strdup(formatted_date);
 
             g_free(formatted_date);
             g_date_time_unref(date);
+        } else {
+            g_clear_pointer(&current_app_data->birthday, g_free);
         }
-    }   
-    */
-
-    //else {
+    } else {
         g_clear_pointer(&current_app_data->birthday, g_free);
-    //}
+    }
 
     if (state_copy != NULL && state_copy->secret_entry != NULL) {
         const char *const_txt_secret = gtk_editable_get_text(GTK_EDITABLE(secret_copy)); 

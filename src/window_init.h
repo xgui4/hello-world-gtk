@@ -42,7 +42,7 @@ GtkWidget* checkbox1_init(const char* default_label, GtkApplication* app);
 
 Secret* state_init(GtkWidget* vbox); 
 
-Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, AppData* user_data); 
+Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, GtkWidget* calendar, AppData* user_data); 
 
 GtkWidget* checkbox2_init(const char* default_label, Secret* state); 
 

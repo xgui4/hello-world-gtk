@@ -86,13 +86,14 @@ Secret* state_init(GtkWidget* vbox) {
     return state; 
 }
 
-Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, AppData* user_data) {
+Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, GtkWidget* calendar, AppData* user_data) {
     Window_Data *data = g_malloc(sizeof(Window_Data));
-    data->state = state; 
-    data->text_field = text_field; 
+    data->state = state;
+    data->text_field = text_field;
     data->text_field_username = text_field_user_name;
-    data->app_data = user_data; 
-    return data; 
+    data->calendar = calendar;
+    data->app_data = user_data;
+    return data;
 }
 
 GtkWidget* checkbox2_init(const char* default_label, Secret* state) {
