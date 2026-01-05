@@ -43,7 +43,7 @@ void activate(GtkApplication *app, gpointer app_data)
     GtkWidget *vbox = vbox_init(10, GTK_ORIENTATION_VERTICAL, 10, 10, 10, 10); 
 
     // Widgets creation
-    GtkWidget *logo_picture = logo_picture_init("/dev/xgui4/hello-world-gtk-app/image.jpg", TRUE, TRUE, GTK_ALIGN_FILL, TRUE, GTK_CONTENT_FIT_CONTAIN); 
+    GtkWidget *logo_picture = logo_picture_init(app_image_path, TRUE, TRUE, GTK_ALIGN_FILL, TRUE, GTK_CONTENT_FIT_CONTAIN); 
     GtkWidget *text_field = text_field_init(); 
     GtkWidget *text_field_user_name = text_field_init(); 
     GtkWidget *hello_world_button = hello_world_button_init("Hello World From GTK!", GTK_ALIGN_CENTER, text_field); 

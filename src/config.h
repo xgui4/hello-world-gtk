@@ -42,5 +42,11 @@ extern const char * repo_link;
  * 
  */
 extern const Locale language; 
- 
+
+/**
+ * @brief Path for the App Image
+ * 
+ */
+extern const char* app_image_path; 
+
 #endif // CONFIG_H

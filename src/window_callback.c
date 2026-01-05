@@ -64,12 +64,24 @@ void save(GtkButton* button, gpointer data) {
         return; 
     }
 
-    AppData *current_app_data = window_data->app_data;
-    Secret  *state_copy = window_data->state; 
-    GtkWidget *text_field_copy = window_data->text_field;
-    GtkWidget *birthday_copy = window_data->calendar; 
-    GtkWidget *secret_copy = state_copy->secret_entry; 
-    GtkWidget *text_field_username_copy = window_data->text_field_username; 
+    AppData *current_app_data = NULL;
+    Secret  *state_copy = NULL;  
+    GtkWidget *text_field_copy = NULL;
+    GtkWidget *birthday_copy = NULL;  
+    GtkWidget *secret_copy = NULL;
+    GtkWidget *text_field_username_copy = NULL; 
+
+    if (window_data != NULL) {
+        current_app_data = window_data->app_data;
+        state_copy = window_data->state; 
+        text_field_copy = window_data->text_field;
+        birthday_copy = window_data->calendar; 
+        text_field_username_copy = window_data->text_field_username;
+
+        if (state_copy != NULL) {
+            secret_copy = state_copy->secret_entry;
+        }
+    }
 
     if (text_field_copy != NULL) {
         const char *const_txt = gtk_editable_get_text(GTK_EDITABLE(text_field_copy)); 
@@ -79,16 +91,26 @@ void save(GtkButton* button, gpointer data) {
     else {
         current_app_data->msg = NULL; 
     }
-    
-    if (birthday_copy != NULL) {
-        // const char *const_txt_birthday = g_date_time_format(gtk_calendar_get_date(GTK_CALENDAR(birthday_copy)), "%Y-%m-%d %H:%M:%S"); 
-        // current_app_data->birthday = g_strdup(const_txt_birthday); 
-        current_app_data->birthday = NULL; 
-    }
 
-    else {
-        current_app_data->birthday = NULL; 
-    }
+    /*
+    if (birthday_copy != NULL) {
+        GDateTime *date = gtk_calendar_get_date(GTK_CALENDAR(birthday_copy));
+
+        if (date != NULL) {
+            char *formatted_date = g_date_time_format(date, "%Y-%m-%d");
+
+            g_free(current_app_data->birthday);
+            current_app_data->birthday = g_strdup(formatted_date);
+
+            g_free(formatted_date);
+            g_date_time_unref(date);
+        }
+    }   
+    */
+
+    //else {
+        g_clear_pointer(&current_app_data->birthday, g_free);
+    //}
 
     if (state_copy != NULL && state_copy->secret_entry != NULL) {
         const char *const_txt_secret = gtk_editable_get_text(GTK_EDITABLE(secret_copy)); 

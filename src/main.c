@@ -29,12 +29,12 @@ int main (int argc, char **argv)
     
     g_print("Starting the %s App Version %s by %s\n", app_name, version, app_author);
 
-    AppData *app_data = malloc(sizeof *app_data); 
+    AppData *app_data = calloc(1, sizeof *app_data); 
 
-    app_data->user_name = malloc(sizeof *app_data); 
-    app_data->msg = malloc(sizeof *app_data); 
-    app_data->birthday = malloc(sizeof *app_data); 
-    app_data->secret = malloc(sizeof *app_data); 
+    app_data->user_name = calloc(1 ,sizeof *app_data); 
+    app_data->msg = calloc(1, sizeof *app_data); 
+    app_data->birthday = calloc(1, sizeof *app_data); 
+    app_data->secret = calloc(1, sizeof *app_data); 
 
     GtkApplication *app = gtk_application_new("dev.xgui4.hello-world-gtk", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(activate), app_data);
