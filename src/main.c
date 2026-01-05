@@ -1,9 +1,11 @@
+/** @file The main function of the program */
+
 #include <gtk/gtk.h>
 #include "window.h"
 #include "config.h"
 #include "utils.h"
 #include "cli.h"
-#include "AppData.h"
+#include "app_data.h"
 
 int main (int argc, char **argv)
 {
@@ -14,14 +16,25 @@ int main (int argc, char **argv)
   }
 
   else {
+
+    // char *starting_script = get_string_from_local(language, "starting_script"); 
+
+    /*
+    char *starting_script = NULL; 
+
+    if (starting_script == NULL) {
+      starting_script = "Starting the %s App Version %s by %s\n"; 
+    }
+    */
+    
     g_print("Starting the %s App Version %s by %s\n", app_name, version, app_author);
 
-    AppData *app_data = malloc(sizeof *app_data); 
+    AppData *app_data = calloc(1, sizeof *app_data); 
 
-    app_data->user_name = malloc(sizeof *app_data); 
-    app_data->msg = malloc(sizeof *app_data); 
-    app_data->birthday = malloc(sizeof *app_data); 
-    app_data->secret = malloc(sizeof *app_data); 
+    app_data->user_name = calloc(1 ,sizeof *app_data); 
+    app_data->msg = calloc(1, sizeof *app_data); 
+    app_data->birthday = calloc(1, sizeof *app_data); 
+    app_data->secret = calloc(1, sizeof *app_data); 
 
     GtkApplication *app = gtk_application_new("dev.xgui4.hello-world-gtk", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(activate), app_data);

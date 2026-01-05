@@ -1,6 +1,6 @@
 # Maintainer xgui4 name@example.com
 pkgname=hello-world-gtk
-pkgver=r40.2c865e2
+pkgver=r48.ec6e35c
 pkgrel=1
 pkgdesc="My First GTK App"
 arch=('x86_64')
@@ -27,7 +27,7 @@ makedepends=(
   'automake' 
   'git'
 )
-source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=dev')
+source=('hello-world-gtk::git+https://github.com/xgui4/hello-world-gtk#branch=unstable')
 
 sha256sums=('SKIP')
 
@@ -43,7 +43,7 @@ build() {
 
 package() {
   install -Dm755 "${srcdir}/$pkgname/bin/$pkgname-app" "$pkgdir/usr/bin/$pkgname"
-  install -Dm755 "${srcdir}/$pkgname/pkg/hello-world-gtk-app.desktop" "$pkgdir/usr/share/applications/hello-world-gtk-app.desktop"
+  install -Dm755 "${srcdir}/$pkgname/pkg/io.github.xgui4.hello-world-gtk.desktop" "$pkgdir/usr/share/applications/io.github.xgui4.hello-world-gtk.desktop"
   install -Dm644 "${srcdir}/$pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 "${srcdir}/$pkgname/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
   install -Dm644 "${srcdir}/$pkgname/code-of-conduct.md" "$pkgdir/usr/share/doc/$pkgname/code-of-conduct.md"

@@ -1,23 +1,52 @@
-// config.h
+/** @file */
+
 #pragma once
+
 #ifndef CONFIG_H
 #define CONFIG_H
 
-/*
-* Version of the program
-*/
+#include "locale.h"
+
+/**
+ * @brief Version of the program
+ * 
+ */
 extern const char * version; 
-/*
-* Name of the program
-*/
+
+/**
+ * @brief Name of the App
+ * 
+ */
 extern const char * app_name; 
-/*
-* Name of the author of the program
-*/
+
+/**
+ * @brief Author of the App
+ * 
+ */
 extern const char * app_author; 
-/*
-* Information about the app
-*/
+
+/**
+ * @brief Information about the App
+ * 
+ */
 extern const char * about; 
+
+/**
+ * @brief Link of the repo to go with the button to the repo
+ * 
+ */
+extern const char * repo_link; 
+
+/**
+ * @brief Default Language for the App
+ * 
+ */
+extern const Locale language; 
+
+/**
+ * @brief Path for the App Image
+ * 
+ */
+extern const char* app_image_path; 
 
 #endif // CONFIG_H

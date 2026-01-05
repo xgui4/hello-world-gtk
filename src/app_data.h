@@ -1,14 +1,21 @@
+/** @file */
+
 #pragma once
-#ifndef APPDATA_H
-#define APPDATA_H
-#include "AppData.h"
+
+#ifndef APP_DATA_H
+#define APP_DATA_H
+
 #include "json-glib-1.0/json-glib/json-glib.h"
 
+/**
+ * @struct
+ * @brief Contains pointers of App Data 
+ */
 typedef struct AppData {
-    char *user_name;
-    char *msg; 
-    char *birthday; 
-    char *secret; 
+    char *user_name; ///< string pointer of username data
+    char *msg; /// string pointer of message data
+    char *birthday; /// string pointer of birthday data
+    char *secret; /// string pointer of secret
 } AppData;
 
 extern AppData *app_data; 

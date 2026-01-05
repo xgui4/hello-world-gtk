@@ -1,0 +1,4 @@
+{
+    "starting_script" : "Démarrage de l'application %s version %s par %s\n", 
+    "hello_world": "Salut le monde depuis GTK!", 
+}
