@@ -19,6 +19,7 @@ typedef struct Window_Data {
     Secret* state; 
     GtkWidget* text_field; 
     GtkWidget* text_field_username;
+    GtkWidget* secret_entry;
     GtkWidget* calendar; 
     AppData* app_data; 
 } Window_Data; 
@@ -42,7 +43,7 @@ GtkWidget* checkbox1_init(const char* default_label, GtkApplication* app);
 
 Secret* state_init(GtkWidget* vbox); 
 
-Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, GtkWidget* calendar, AppData* user_data); 
+Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, GtkWidget* calendar, GtkWidget* secret_entry,  AppData* user_data); 
 
 GtkWidget* checkbox2_init(const char* default_label, Secret* state); 
 

@@ -3,4 +3,8 @@
   <gresource prefix="/dev/xgui4/hello-world-gtk-app">
     <file alias="image.jpg">assets/image.jpg</file>
   </gresource>
+  <gresource prefix="/dev/xgui4/hello-world-gtk-app/locales">
+    <file alias="fr.json">locales/fr.json</file>
+    <file alias="en.json">locales/en.json</file>
+  </gresource>
 </gresources>

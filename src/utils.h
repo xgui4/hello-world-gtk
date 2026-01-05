@@ -63,6 +63,6 @@ void show_notification(GtkApplication *app, const char *title, const char *body)
  * @param key  The key of the string
  * @return char* the value of the key
  */
-// char* get_string_from_local(Locale locale, char* key); 
+char* get_string_from_local(Locale locale, char* key); 
 
-#endif
+#endif // UTILS_H
