@@ -21,8 +21,8 @@
 # SOFTWARE.
 
 # Variables
-CC = gcc
-BUILD_DIR = bin 
+CC = clang
+BUILD_DIR = bin
 TARGET = bin/hello-world-gtk-app
 PREFIX ?= /usr
 
@@ -32,16 +32,15 @@ RES_H := src/myresources.h
 
 SRC = $(wildcard src/*.c) $(wildcard src/widgets/*.c) $(RES_C)
 
-# Compilation flags
-GTK_CFLAGS := $(shell pkg-config --cflags gtk4 json-glib-1.0 )
+GTK_CFLAGS := $(shell pkg-config --cflags gtk4 json-glib-1.0)
 GTK_LIBS := $(shell pkg-config --libs gtk4 json-glib-1.0)
 
-# Default target (Compile and run))
+# Default target
 all: $(TARGET)
 
 $(TARGET): $(SRC) | $(BUILD_DIR)
-	@echo "Compiling the program with GCC"
-	$(CC) $(GTK_CFLAGS) -g -O0 -Wall -Wextra -o $@ $^ $(GTK_LIBS) -fsanitize=address 
+	@echo "Compiling the program with Clang"
+	$(CC) $(GTK_CFLAGS) -g -O0 -Wall -Wextra -o $@ $^ $(GTK_LIBS)
 
 # Rule to create the build directory
 $(BUILD_DIR):
@@ -66,3 +65,4 @@ clean:
 build: $(TARGET)
 
 .PHONY: all run build clean
+
