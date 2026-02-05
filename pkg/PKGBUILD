@@ -33,7 +33,7 @@ sha256sums=('SKIP') # will have the check later
 
 build() {
   cd "${srcdir}/${pkgname}"
-  make -f makefile.release build
+  # to be determined, since we are switching to meson instead of makefile
 }
 
 package() {

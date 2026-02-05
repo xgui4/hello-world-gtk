@@ -38,7 +38,7 @@ pkgver() {
 
 build() {
   cd "${srcdir}/${pkgname}"
-  make -f makefile.release build
+  # to be determined, since we are switching to meson instead of makefile
 }
 
 package() {
