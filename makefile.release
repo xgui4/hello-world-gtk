@@ -30,7 +30,7 @@ RES_XML := myresources.xml
 RES_C := src/myresources.c
 RES_H := src/myresources.h
 
-SRC = src/main.c src/config.c src/utils.c src/window.c src/cli.c src/widgets/button.c src/app_data.c src/widgets/alert_dialog.c src/window_callback.c src/window_init.c $(RES_C)
+SRC = $(wildcard src/*.c) $(wildcard src/widgets/*.c) $(RES_C)
 
 # Compilation flags
 GTK_CFLAGS := $(shell pkg-config --cflags gtk4 json-glib-1.0)

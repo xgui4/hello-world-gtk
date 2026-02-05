@@ -17,17 +17,13 @@ int main (int argc, char **argv)
 
   else {
 
-    // char *starting_script = get_string_from_local(language, "starting_script"); 
-
-    /*
-    char *starting_script = NULL; 
-
+    char *starting_script = get_string_from_local(language, "starting_script"); 
+    
     if (starting_script == NULL) {
       starting_script = "Starting the %s App Version %s by %s\n"; 
     }
-    */
     
-    g_print("Starting the %s App Version %s by %s\n", app_name, version, app_author);
+    g_print(starting_script, app_name, version, app_author);
 
     AppData *app_data = calloc(1, sizeof *app_data); 
 

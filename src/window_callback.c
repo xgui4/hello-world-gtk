@@ -76,6 +76,7 @@ void save(GtkButton* button, gpointer data) {
         state_copy = window_data->state; 
         text_field_copy = window_data->text_field;
         birthday_copy = window_data->calendar; 
+        secret_copy = window_data->secret_entry;
         text_field_username_copy = window_data->text_field_username;
 
         if (state_copy != NULL) {
@@ -110,13 +111,13 @@ void save(GtkButton* button, gpointer data) {
         g_clear_pointer(&current_app_data->birthday, g_free);
     }
 
-    if (state_copy != NULL && state_copy->secret_entry != NULL) {
+    if (state_copy != NULL && secret_copy != NULL) {
         const char *const_txt_secret = gtk_editable_get_text(GTK_EDITABLE(secret_copy)); 
         current_app_data->secret = g_strdup(const_txt_secret);  
     }
 
     else {
-        current_app_data->secret = NULL;
+        current_app_data->secret = "This is a secret!";
     }
     
     if (text_field_username_copy != NULL) {

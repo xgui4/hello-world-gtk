@@ -83,32 +83,14 @@ void show_notification(GtkApplication *app, const char *title, const char *body)
     g_object_unref(icon);
 }
 
-/* temporaly disabled due to issue 
+/**
+ * @brief  the string from local object
+ * @note This function is not implemented yet
+ * @param locale 
+ * @param key 
+ * @return char* 
+ */
 char *get_string_from_local(Locale locale, char *key)
 {
-    JsonParser *parser = json_parser_new();
-    GError *error = NULL;
-
-    char *locale_file = g_strdup_printf("../locales/%s.json", locale_filename[locale]);
-    json_parser_load_from_file(parser, locale_file, &error);
-
-    if (error) {
-        g_printerr("Error loading locale file: %s\n", error->message);
-        g_error_free(error);
-        g_object_unref(parser);
-        g_free(locale_file);
-        return NULL;
-    }
-
-    JsonNode *root = json_parser_get_root(parser);
-    JsonObject *obj = json_node_get_object(root);
-    const char *value = json_object_get_string_member(obj, key);
-
-    char *result = g_strdup(value);
-
-    g_object_unref(parser);
-    g_free(locale_file);
-
-    return result;
+    return "Not implemented yet!";
 }
-*/

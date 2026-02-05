@@ -86,12 +86,13 @@ Secret* state_init(GtkWidget* vbox) {
     return state; 
 }
 
-Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, GtkWidget* calendar, AppData* user_data) {
+Window_Data* window_data_init(Secret* state, GtkWidget* text_field, GtkWidget* text_field_user_name, GtkWidget* calendar, GtkWidget* secret_entry,  AppData* user_data) {
     Window_Data *data = g_malloc(sizeof(Window_Data));
     data->state = state;
     data->text_field = text_field;
     data->text_field_username = text_field_user_name;
     data->calendar = calendar;
+    data->secret_entry = secret_entry;
     data->app_data = user_data;
     return data;
 }
