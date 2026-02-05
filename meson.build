@@ -2,18 +2,15 @@ project('hello-world-gtk', 'c',
   version: '0.0.1~proto',
   default_options: [
     'warning_level=3',
-    'buildtype=debug'
-  ])
+    'buildtype=debug',
+  ],
+)
 
-cc = 'clang'
-
-# Find dependencies
-gtk_dep = dependency('gtk4')
-json_glib_dep = dependency('json-glib-1.0')
+dependencies = [ dependency('gtk4'), dependency('json-glib-1.0')]
 
 # Define output directory
 build_dir = meson.current_build_dir()
-bin_dir = build_dir / 'bin'
+bin_dir = build_dir / 'build'
 
 # Ensure bin/ exists
 run_command('mkdir', '-p', bin_dir)
@@ -45,11 +42,11 @@ src_files += files(
   'src/window_init.c'
 )
 
-executable('hello-world-gtk-app',
+executable('hello-world-gtk',
   src_files,
   resources,
   include_directories: include_directories('.'),
-  dependencies: [gtk_dep, json_glib_dep],
+  dependencies: dependencies,
   build_by_default: true,
   install: true,
 )

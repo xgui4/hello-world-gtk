@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "utils.h"
 #include <gtk/gtk.h>
 #include <string.h>
