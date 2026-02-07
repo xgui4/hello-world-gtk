@@ -7,8 +7,6 @@
 
 #include <gtk/gtk.h>
 #include "app_data.h"
-#include "utils.h"
-#include "myresources.h"
 
 typedef struct Secret {
     GtkWidget *vbox; 

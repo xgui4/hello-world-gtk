@@ -10,7 +10,7 @@ static void display_result(int cmd_version_argument_used, int cmd_about_argument
     }
  
     if (cmd_about_argument_used) {
-        g_print(about); 
+        g_print("%s", about); 
     }
 }
 

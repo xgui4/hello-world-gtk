@@ -23,3 +23,6 @@ data.json
 
 # doxygen folder
 /docs
+
+# Clangd cache 
+.cache

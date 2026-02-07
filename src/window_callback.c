@@ -2,11 +2,8 @@
 #include "window_init.h"
 #include "config.h"
 #include "app_data.h"
-#include "window.h"
-#include "widgets/button.h"
 #include "utils.h"
 #include "widgets/alert_dialog.h"
-#include "myresources.h"
 #include "window_callback.h"
 
 void popup_hello_world_button(GtkWidget *widget, gpointer data)
