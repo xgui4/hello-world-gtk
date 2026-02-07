@@ -33,6 +33,7 @@ source=()
 sha256sums=('SKIP') # will have the check later 
 
 build() {
+  export CC=clang
   meson setup build
   meson compile -C build
 }

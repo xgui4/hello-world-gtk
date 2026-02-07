@@ -36,3 +36,14 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
 # 2. 
 flatpak-builder .flatpak/ --verbose --force-clean --ccache --install-deps-from=flathub --install --user 'pkg/flatpak/io.github.xgui4.hello.world.gtk.yml'
 ```
+
+## Recommended vscode settings :
+
+```json
+{
+    "mesonbuild.configureOnOpen": true,
+    "mesonbuild.buildFolder": "build",
+    "mesonbuild.formatting.enabled": true,
+    "mesonbuild.linter.muon.enabled": true
+}
+```

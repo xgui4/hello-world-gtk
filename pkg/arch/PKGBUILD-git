@@ -39,6 +39,7 @@ pkgver() {
 }
 
 build() {
+  export CC=clang
   cd "${srcdir}/${pkgname}"
   meson setup build
   meson compile -C build

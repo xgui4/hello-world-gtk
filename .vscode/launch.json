@@ -5,10 +5,10 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug Executable",
-            "program": "${workspaceFolder}/builddir/hello-world-gtk",
+            "program": "${workspaceFolder}/build/hello-world-gtk",
             "args": [],
             "env" : {"CC": "clang"},
-            "cwd": "${workspaceFolder}/builddir",
+            "cwd": "${workspaceFolder}/build",
             "envFile": "${workspaceFolder}/builddir/meson-vscode-env.env",
             "preLaunchTask": "Configure & Build"
         }

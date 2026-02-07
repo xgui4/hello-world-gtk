@@ -43,7 +43,7 @@ src_files += files(
 )
 
 # Validate MetaInfo file
-metainfo_file = '/pkg/flatpak/io.github.xgui4.hello_world_gtk.metainfo.xml'
+metainfo_file = 'pkg/io.github.xgui4.hello.world.gtk.metainfo.xml'
 ascli_exe = find_program('appstreamcli', required: false)
 if ascli_exe.found()
   test('validate metainfo file',
