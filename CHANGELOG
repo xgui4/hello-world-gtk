@@ -3,6 +3,7 @@
     - re-add flatpak support 
         (but the app still need to implement some portals and the manifest might need to be changed)
     - a local make pkg file that work
+    - added WIP github action workflow
 
 6 February : fix the PKGBUILD file and PKGBUILD file + fix a security flaw in the cli command 
 
