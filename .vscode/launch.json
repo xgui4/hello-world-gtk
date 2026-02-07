@@ -2,30 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug GTK4 App",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/hello-world-gtk-app",
+            "name": "Debug Executable",
+            "program": "${workspaceFolder}/builddir/hello-world-gtk",
             "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Fix GTK critical signals",
-                    "text": "handle SIGTRAP noprint nostop",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "make -f makefile.debug build",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "env" : {"CC": "clang"},
+            "cwd": "${workspaceFolder}/builddir",
+            "envFile": "${workspaceFolder}/builddir/meson-vscode-env.env",
+            "preLaunchTask": "Configure & Build"
         }
     ]
 }

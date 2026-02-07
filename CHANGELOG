@@ -1,0 +1,5 @@
+6 February : fix the PKGBUILD file and PKGBUILD file + fix a security flaw in the cli command 
+
+5 February : Removed useless header, added vscode support for clang and clangd and codelldb debugging support with meson
+
+4 February : Begin the switch to Meson Build, and deleting old obseled file that used makefile and new branch -> switch to meson  
