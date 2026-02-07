@@ -1,1 +1,47 @@
-# TODO
+name: Meson Build and Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # may be changed to a different runner if needed
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Run Meson build action
+      uses: BSFishy/meson-build@v1.0.3
+      with:
+        # action: The action to perform (build, install, test, coverage, tidy)
+        action: build
+
+    - name: Run Meson test action
+      uses: BSFishy/meson-build@v1.0.3
+      with:
+        # action: The action to perform (build, install, test, coverage, tidy)
+        action: test
+
+    - name: Run Meson tidy action
+      uses: BSFishy/meson-build@v1.0.3
+      with:
+        # action: The action to perform (build, install, test, coverage, tidy)
+        action: tidy
+
+    # - name: Run Meson coverage action
+      # uses: BSFishy/meson-build@v1.0.3
+      # with:
+        # action: The action to perform (build, install, test, coverage, tidy)
+        # action: coverage
+
+    # - name: Run Meson install action
+      # uses: BSFishy/meson-build@v1.0.3
+      # with:
+        # action: The action to perform (build, install, test, coverage, tidy)
+        # action: install
+
+
