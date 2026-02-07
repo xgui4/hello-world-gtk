@@ -1,3 +1,9 @@
+7 February : 
+    - reorganised the pkg folder  
+    - re-add flatpak support 
+        (but the app still need to implement some portals and the manifest might need to be changed)
+    - a local make pkg file that work
+
 6 February : fix the PKGBUILD file and PKGBUILD file + fix a security flaw in the cli command 
 
 5 February : Removed useless header, added vscode support for clang and clangd and codelldb debugging support with meson

@@ -26,3 +26,7 @@ data.json
 
 # Clangd cache 
 .cache
+
+# Flatpak build output
+****.flatpak-builder
+.flatpak

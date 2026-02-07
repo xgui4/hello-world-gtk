@@ -1,0 +1,47 @@
+# Maintainer xgui4 name@example.com
+pkgname=hello-world-gtk
+pkgver=0.0.0.2~proto
+pkgrel=1
+pkgdesc="My First GTK App"
+arch=('x86_64')
+url="https://github.com/xgui4/hello-world-gtk"
+license=('MIT') 
+depends=(
+  'gtk4'
+  'glib2'
+  'glibc'
+  'xdg-utils'
+  'pango'
+  'cairo' 
+  'harfbuzz' 
+  'gdk-pixbuf2' 
+  'graphene' 
+  'vulkan-icd-loader'
+  'json-glib'
+)
+makedepends=(
+  'gcc'
+  'clang'
+  'make' 
+  'pkgconfig' 
+  'autoconf' 
+  'automake' 
+  'git'
+)
+source=()
+
+sha256sums=('SKIP') # will have the check later 
+
+build() {
+  meson setup build
+  meson compile -C build
+}
+
+package() {
+  install -Dm755 "build/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -Dm755 "pkg/io.github.xgui4.hello.world.gtk.desktop" "$pkgdir/usr/share/applications/io.github.xgui4.hello.world.gtk.desktop"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 "code-of-conduct.md" "$pkgdir/usr/share/doc/$pkgname/code-of-conduct.md"
+  install -Dm644 "pkg/io.github.xgui4.hello.world.gtk.metainfo.xml" "$pkgdir/usr/share/metainfo/io.github.xgui4.hello.world.gtk.metainfo.xml"
+}

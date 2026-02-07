@@ -42,6 +42,19 @@ src_files += files(
   'src/window_init.c'
 )
 
+# Validate MetaInfo file
+metainfo_file = '/pkg/flatpak/io.github.xgui4.hello_world_gtk.metainfo.xml'
+ascli_exe = find_program('appstreamcli', required: false)
+if ascli_exe.found()
+  test('validate metainfo file',
+        ascli_exe,
+        args: ['validate',
+               '--no-net',
+               '--pedantic',
+               metainfo_file]
+  )
+endif
+
 executable('hello-world-gtk',
   src_files,
   resources,

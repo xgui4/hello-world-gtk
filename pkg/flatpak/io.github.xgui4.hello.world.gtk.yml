@@ -1,0 +1,35 @@
+app-id: io.github.xgui4.hello.world.gtk
+runtime: org.gnome.Platform
+runtime-version: '49'
+sdk: org.gnome.Sdk
+
+name: Hello World GTK
+command: hello-world-gtk
+summary: My First GTK App
+description: |
+  This is a simple app I made to learn C and GTK.
+  And it can be useful to check a GTK installation and theme on a UNIX-like system.
+
+finish-args:
+  - --device=dri
+  - --share=network
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+
+modules:
+  - name: hello-world-gtk
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: ../../
+        exclude:
+          - .git/
+          - .github/
+          - pkg/arch/
+          - pkg/flatpak/
+          - build/
+          - builddir/
+          - .cache/
+          - .idea/
+          - .vscode/

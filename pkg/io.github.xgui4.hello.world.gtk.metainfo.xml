@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.xgui4.hello.world.gtk</id>
+  
+  <name>hello-world-gtk</name>
+  <summary>My First GTK App</summary>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  
+  <description>
+    <h1>
+      Hello World GTK
+    </h1>
+    <p>
+      This is a simple app i made to learn C and GTK
+    </p>
+    <p>
+      And could be very useful to check a GTK installation and theme on a UNIX-like system.
+    </p>
+  </description>
+
+  <url>https://github.com/xgui4/hello-world-gtk</url>
+  
+  <launchable type="desktop-id">io.github.xgui4.hello.world.gtk.desktop</launchable>
+</component>
